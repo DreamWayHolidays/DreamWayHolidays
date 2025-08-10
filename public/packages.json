@@ -1,0 +1,421 @@
+[
+  {
+    "id": 1,
+    "title": "Spiritual Rishikesh Retreat",
+    "duration": "7 days",
+    "price": 25000,
+    "type": "Spiritual",
+    "rating": 4.8,
+    "images": [
+     "/rishikesh-yoga-ashram.png",
+     "/himalayan-trekking.png",
+     "/india-spiritual-adventure.png",
+     "/luxury-mountain-view-india.png",
+     "/valleyOfFlowers.jpg"
+    ],
+    "description": "Find inner peace through yoga and meditation",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Himalayan Adventure Trek",
+    "duration": "10 days",
+    "price": 45000,
+    "type": "Adventure",
+    "rating": 4.9,
+    "images": [
+     "/himalayan-trekking.png",   
+     "/rishikesh-yoga-ashram.png",
+     "/india-spiritual-adventure.png",
+     "/luxury-mountain-view-india.png",
+     "/valleyOfFlowers.jpg"
+    ],
+    "description": "Conquer the mighty peaks of the Himalayas",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Golden Triangle Cultural Tour",
+    "duration": "5 days",
+    "price": 35000,
+    "type": "Cultural",
+    "rating": 4.7,
+    "images": [
+      "/india-spiritual-adventure.png",  
+     "/rishikesh-yoga-ashram.png",
+     "/himalayan-trekking.png",
+     "/luxury-mountain-view-india.png",
+     "/valleyOfFlowers.jpg"
+    ],
+
+    "description": "Explore India's rich cultural heritage",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Kerala Wildlife Safari",
+    "duration": "6 days",
+    "price": 30000,
+    "type": "Wildlife",
+    "rating": 4.6,
+    "images": [
+     "/kerala-elephant-sanctuary.png",
+     "/himalayan-trekking.png",
+     "/varanasi-ghats-aarti.png",
+     "/valleyOfFlowers.jpg"
+    ],
+    "description": "Encounter exotic wildlife in pristine nature",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Varanasi Spiritual Journey",
+    "duration": "4 days",
+    "price": 20000,
+    "type": "Spiritual",
+    "rating": 4.8,
+    "images": [
+     "/varanasi-ghats-aarti.png",
+     "/rishikesh-yoga-ashram.png",
+     "/himalayan-trekking.png",
+     "/luxury-mountain-view-india.png"
+    ],
+    "description": "Experience the spiritual heart of India",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Valley of Flowers",
+    "duration": "12 days",
+    "price": 55000,
+    "type": "Adventure",
+    "rating": 4.9,
+    "images": [
+     "/valleyOfFlowers.jpg",
+     "/rishikesh-yoga-ashram.png",
+     "/himalayan-trekking.png",
+     "/india-spiritual-adventure.png"
+    ],
+    "description": "Journey through the valley of flowers",
+    "highlights": [
+      "Daily yoga and meditation sessions with certified instructors",
+      "Participate in the mesmerizing Ganga Aarti ceremony",
+      "Visit ancient temples and traditional ashrams",
+      "Rejuvenating Ayurvedic spa treatments",
+      "Spiritual discourse with renowned gurus and masters"
+    ],
+    "includes": [
+      "Accommodation in traditional ashram",
+      "All vegetarian meals (breakfast, lunch, dinner)",
+      "Daily yoga and meditation classes",
+      "Guided temple visits and spiritual tours",
+      "Airport transfers and local transportation",
+      "English-speaking spiritual guide"
+    ],
+    "excludes": [
+      "International and domestic flight tickets",
+      "Personal expenses and shopping",
+      "Tips and gratuities for guides",
+      "Travel insurance",
+      "Any meals not mentioned in inclusions"
+    ],
+    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "importantInfo": [
+      "Strictly vegetarian meals only - no non-veg food allowed",
+      "Alcohol and smoking are strictly prohibited in ashram premises",
+      "Comfortable, modest clothing required for yoga and temple visits",
+      "Valid government ID proof mandatory for all participants",
+      "Medical certificate required if you have any health conditions",
+      "Minimum age requirement: 16 years"
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Priya Sharma",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+      },
+      {
+        "id": 2,
+        "name": "Rajesh Kumar",
+        "rating": 4,
+        "date": "1 month ago",
+        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+      },
+      {
+        "id": 3,
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+      }
+    ]
+  }
+]
