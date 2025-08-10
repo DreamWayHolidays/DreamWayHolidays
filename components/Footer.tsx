@@ -1,5 +1,8 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Heart } from "lucide-react"
+import { Mail, Phone, MapPin, Heart } from "lucide-react"
+import { FiFacebook } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
+import { CiTwitter } from "react-icons/ci";
 
 export default function Footer() {
   return (
@@ -19,19 +22,19 @@ export default function Footer() {
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
-                <Facebook className="text-emerald-600" size={20} />
+                <FiFacebook className="text-emerald-600" size={20} />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
-                <Instagram className="text-emerald-600" size={20} />
+                <FaInstagram className="text-emerald-600" size={20} />
               </a>
               <a
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
-                <Twitter className="text-emerald-600" size={20} />
+                <CiTwitter className="text-emerald-600" size={20} />
               </a>
             </div>
           </div>
@@ -54,21 +57,20 @@ export default function Footer() {
             </ul>
           </div>
 
-
           <div>
             <h3 className="text-xl font-bold mb-6 text-gray-100">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-center">
-                <Mail size={18} className="mr-3 text-emerald-600" />
+                <Mail size={18} className="mr-3 text-gray-100" />
                 <span className="font-medium">info@trek365.com</span>
               </div>
               <div className="flex items-center">
-                <Phone size={18} className="mr-3 text-emerald-600" />
+                <Phone size={18} className="mr-3 text-gray-100" />
                 <span className="font-medium">+91 98765 43210</span>
               </div>
               <div className="flex items-center">
-                <MapPin size={18} className="mr-3 text-emerald-600" />
-                <span className="font-medium">New Delhi, India</span>
+                <MapPin size={18} className="mr-3 text-gray-100" />
+                <span className="font-medium">Uttarakhand, India</span>
               </div>
             </div>
           </div>

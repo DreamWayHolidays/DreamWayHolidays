@@ -141,7 +141,7 @@ export default function Contact() {
                       <p className="text-gray-600">We'll respond within 24 hours</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">info@exploreyatra.com</p>
+                  <p className="text-lg font-semibold text-emerald-600">info@trek365.com</p>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
@@ -167,7 +167,7 @@ export default function Contact() {
                       <p className="text-gray-600">Come say hello at our office</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">New Delhi, India</p>
+                  <p className="text-lg font-semibold text-emerald-600">Uttarakhand, India</p>
                 </div>
               </div>
 

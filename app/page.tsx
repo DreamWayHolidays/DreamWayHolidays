@@ -8,8 +8,8 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">       
         <div className="absolute inset-0 z-0 overlay">
           <Image
-            src={"/ExploreYatra_HomePage.jpg"}
-            alt="Scenic India landscape"
+            src={"Trek365_HomePage.jpg"}
+            alt="Trek365 Homepage Image"
             fill
             className="object-cover scale-110 transition-transform duration-[10s] hover:scale-100"
             priority

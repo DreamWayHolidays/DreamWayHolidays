@@ -1,420 +1,408 @@
 [
   {
     "id": 1,
-    "title": "Spiritual Rishikesh Retreat",
-    "duration": "7 days",
-    "price": 25000,
+    "title": "Rishikesh Explorer Tour",
+    "duration": "5 days",
+    "price": 22000,
     "type": "Spiritual",
     "rating": 4.8,
     "images": [
-     "/rishikesh-yoga-ashram.png",
-     "/himalayan-trekking.png",
-     "/india-spiritual-adventure.png",
-     "/luxury-mountain-view-india.png",
-     "/valleyOfFlowers.jpg"
+      "/rishikesh-Ganga-aarti.jpg", 
+      "/rishikesh-yoga-ashram.png",
+      "/haridwar1.jpg",
+      "/haridwar2.jpg"
     ],
-    "description": "Find inner peace through yoga and meditation",
+    "description": "A five-day immersive tour of Rishikesh — explore its spiritual sites, riverside markets, cultural heritage, and serene yoga experiences.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Guided evening Ganga Aarti ceremony at Triveni Ghat",
+      "Visit ancient temples and the Beatles Ashram (Chaurasi Kutia)",
+      "Optional evening yoga or meditation session by the Ganges",
+      "Local walking tour through Rishikesh town and markets",
+      "Short rafting or riverside strolls (optional and seasonal)"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "4 nights accommodation in a comfortable guesthouse or hotel",
+      "Daily breakfast and one welcome herbal meal",
+      "All guided tours and entry fees to Beatles Ashram and temples",
+      "Transfers from and to Jolly Grant Airport, Dehradun",
+      "Local English-speaking guide"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "International and domestic flights",
+      "Personal expenses (shopping, snacks, optional activities)",
+      "Meals not stated in inclusions",
+      "Travel insurance and medical costs",
+      "Tips and gratuities for guides"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Jolly Grant Airport, Dehradun (DED)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Dress modestly for temple visits and Ganges ceremonies",
+      "Footwear removal required at religious sites—carry easy slip-ons",
+      "Ganga Aarti may involve crowds—follow guide instructions",
+      "Yoga is optional; bring a yoga mat or notify us to provide one",
+      "Accessible for most travelers—inform us of mobility needs ahead"
     ],
-
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Anjali Verma",
         "rating": 5,
         "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "text": "Loved the balance between cultural exploration and peaceful moments by the Ganges. Our guide made it enriching!"
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
+        "name": "Rohit Singh",
         "rating": 4,
         "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "text": "Beautiful variety of experiences—ashram, market, riverside walks. A little more food variety would've been nice."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
+        "name": "Meera Patel",
         "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "date": "3 months ago",
+        "text": "Such a soulful trip with a lively town vibe. Perfect introduction to Rishikesh."
       }
     ]
   },
+
   {
     "id": 2,
-    "title": "Himalayan Adventure Trek",
-    "duration": "10 days",
-    "price": 45000,
+    "title": "Kedarkantha Summit Trek",
+    "duration": "7 days",
+    "price": 38000,
     "type": "Adventure",
     "rating": 4.9,
     "images": [
-     "/himalayan-trekking.png",   
-     "/rishikesh-yoga-ashram.png",
-     "/india-spiritual-adventure.png",
-     "/luxury-mountain-view-india.png",
-     "/valleyOfFlowers.jpg"
+      "/KedarkanthaTrek.jpg",
+      "/kedarkantha2.jpg",
+      "/kedarkantha3.jpg",
+      "/hillStation.jpg"
     ],
-    "description": "Conquer the mighty peaks of the Himalayas",
+    "description": "A classic Uttarakhand winter trek to the panoramic Kedarkantha summit — scenic trails, alpine camps and village hospitality.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Summit at sunrise with sweeping Himalayan views",
+      "Night camping with hot meals and campfire",
+      "Short village visits to experience local mountain life",
+      "Professional guide, basic mountaineering support and porter assistance",
+      "Suitable for intermediate trekkers with good fitness"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "All trek permits and park fees",
+      "Tented camping accommodation on trek nights",
+      "Meals during trek (breakfast, packed lunch, dinner)",
+      "Experienced mountain guide and porters for luggage",
+      "Transfer from Dehradun/Delhi to trailhead (as per itinerary)",
+      "Basic first-aid kit and emergency support"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "Personal trekking gear (sleeping bag, gaiters) — rental available",
+      "Travel insurance covering high-altitude trekking",
+      "All flights and long-distance transfers not in itinerary",
+      "Tips for guides and porters",
+      "Any extra nights accommodation before/after the trek"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Jolly Grant Airport, Dehradun (DED)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Trek altitude reaches ~3800m; moderate-to-high fitness required",
+      "Seasonal: snowy window typically Dec–Mar for snow, summer alternative available",
+      "Carry warm layers, waterproof jacket and sturdy trekking boots",
+      "Medical clearance recommended for participants with cardiac or respiratory issues",
+      "Group size limited to preserve trail experience"
     ],
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Karan Mehta",
         "rating": 5,
-        "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "date": "1 week ago",
+        "text": "A tough but rewarding trek. Guides were excellent, food was surprisingly good on the trail and the views from the summit are unforgettable."
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
-        "rating": 4,
-        "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "name": "Tara Joshi",
+        "rating": 5,
+        "date": "2 months ago",
+        "text": "Well-organized, safe and the campsites were comfortable. Highly recommended for anyone wanting a true Himalayan experience."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
-        "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "name": "Aman Kapoor",
+        "rating": 4,
+        "date": "4 months ago",
+        "text": "Great route and scenery. Would advise more snacks on summit day, otherwise excellent guide team."
       }
     ]
   },
+
   {
     "id": 3,
-    "title": "Golden Triangle Cultural Tour",
-    "duration": "5 days",
-    "price": 35000,
+    "title": "Uttarakhand Heritage & Hills Circuit",
+    "duration": "6 days",
+    "price": 30000,
     "type": "Cultural",
     "rating": 4.7,
     "images": [
-      "/india-spiritual-adventure.png",  
-     "/rishikesh-yoga-ashram.png",
-     "/himalayan-trekking.png",
-     "/luxury-mountain-view-india.png",
-     "/valleyOfFlowers.jpg"
+      "/hillStation.jpg",
+      "/hillStation2.jpg",
+      "/nainitalLake.jpg",
+      "/luxury-mountain-view-india.png"
     ],
-
-    "description": "Explore India's rich cultural heritage",
+    "description": "A relaxed circuit across Uttarakhand hill towns — colonial hill stations, scenic lakes, and Kumaoni culture and cuisine.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Boat ride on Naini Lake and local craft markets in Nainital",
+      "Sunrise viewpoints in Kausani or Binsar (seasonal)",
+      "Walks through colonial-era Mussoorie and Landour lanes",
+      "Cultural interactions and local food tasting",
+      "Comfortable hotels and short scenic drives"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "Accommodation in 3–4 star hotels (5 nights)",
+      "Daily breakfast and selected meals as per itinerary",
+      "Private vehicle and driver for the full circuit",
+      "Local guide for cultural walks and sightseeing",
+      "All local taxes and standard entry fees"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "Flights to Dehradun and return transfers to origin",
+      "Personal shopping and optional activities",
+      "Lunches/dinners unless specified in itinerary",
+      "Travel insurance and medical costs",
+      "Tips for local guides"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Dehradun city center or Jolly Grant Airport (DED)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Pace is relaxed with short drives and light walks",
+      "Some days include uneven footpaths and hill steps — bring comfortable shoes",
+      "Altitude is low to moderate, suitable for most travelers",
+      "Local cuisine may contain dairy and spices; advise dietary needs early",
+      "Peak tourist months: Apr–Jun and Sep–Nov"
     ],
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Nitika Rao",
         "rating": 5,
-        "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "date": "3 weeks ago",
+        "text": "Lovely mix of nature and culture. The guide arranged an authentic Kumaoni meal which was a highlight."
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
+        "name": "Vikram Das",
         "rating": 4,
-        "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "date": "2 months ago",
+        "text": "Good hotels and friendly driver. Could include more time in Almora next time."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
+        "name": "Simran Kaur",
         "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "date": "6 months ago",
+        "text": "Beautiful hill views and calm lakes. Perfect short getaway from the city."
       }
     ]
   },
+
   {
     "id": 4,
-    "title": "Kerala Wildlife Safari",
-    "duration": "6 days",
-    "price": 30000,
+    "title": "Jim Corbett Wildlife Safari",
+    "duration": "3 days",
+    "price": 18000,
     "type": "Wildlife",
     "rating": 4.6,
     "images": [
-     "/kerala-elephant-sanctuary.png",
-     "/himalayan-trekking.png",
-     "/varanasi-ghats-aarti.png",
-     "/valleyOfFlowers.jpg"
+      "/jimcorbett1.jpg",
+      "/jimcorbett2.jpg",
+      "/jimcorbett3.jpg",
+      "/hillStation2.jpg"
     ],
-    "description": "Encounter exotic wildlife in pristine nature",
+    "description": "A short wildlife escape to Jim Corbett National Park with guided jeep safaris, birdwatching and comfortable lodge stays.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Early morning and late afternoon jeep safaris in different zones",
+      "Expert naturalist guiding wildlife and bird identification",
+      "Comfortable eco-friendly lodge accommodation",
+      "Optional nature walks and village visits",
+      "Photography opportunities and evening presentations"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "All park permits and safari bookings (as per itinerary)",
+      "2 nights accommodation in a wildlife lodge",
+      "Meals during the stay (breakfast/lunch/dinner)",
+      "Jeep safaris with trained naturalist guide",
+      "Transfers from nearest pick-up point included"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "Flights and pre/post-package hotel nights",
+      "Personal camera charges or extra photography permits",
+      "Insurance and emergency medical services",
+      "Tips for naturalists and lodge staff",
+      "Alcoholic beverages (if not part of lodge package)"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Ramnagar (gateway for Jim Corbett National Park)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Wildlife sightings cannot be guaranteed — Corbett is a protected wilderness",
+      "Follow all park rules: no loud noises, no littering, no leaving vehicle during safari",
+      "Bring binoculars and a long lens for photography",
+      "Children under 5 may have restricted access on safaris per park rules",
+      "Keep personal medicines and insect repellent handy"
     ],
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Sonal Gupta",
         "rating": 5,
-        "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "date": "1 month ago",
+        "text": "Amazing biodiversity and well-managed safaris. Saw many birds and even spotted deer close to the jeep."
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
+        "name": "Arjun Nair",
         "rating": 4,
-        "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "date": "3 months ago",
+        "text": "Good lodge and friendly staff. Safari timings were perfect for photography."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
-        "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "name": "Farah Khan",
+        "rating": 4,
+        "date": "5 months ago",
+        "text": "Great trip for wildlife lovers. Guides are very knowledgeable about local fauna."
       }
     ]
   },
+
   {
     "id": 5,
-    "title": "Varanasi Spiritual Journey",
-    "duration": "4 days",
-    "price": 20000,
+    "title": "Haridwar Sacred Short Break",
+    "duration": "2 days",
+    "price": 9000,
     "type": "Spiritual",
     "rating": 4.8,
     "images": [
-     "/varanasi-ghats-aarti.png",
-     "/rishikesh-yoga-ashram.png",
-     "/himalayan-trekking.png",
-     "/luxury-mountain-view-india.png"
+      "/haridwar1.jpg",
+      "/haridwar2.jpg",
+      "/rishikesh-Ganga-aarti.jpg",
+      "/haridwar3.jpg"
     ],
-    "description": "Experience the spiritual heart of India",
+    "description": "A short and soulful itinerary centred around Haridwar — witness the iconic Ganga Aarti, visit temples and enjoy guided spiritual walks.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Witness the evening Ganga Aarti at Har Ki Pauri",
+      "Short guided heritage walk through old Haridwar lanes",
+      "Boat ride along the calmer stretches of the Ganges",
+      "Optional Ayurvedic massage or wellness session",
+      "Local devotional music and cultural interaction"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "1 night accommodation in a centrally located hotel",
+      "Breakfast and a welcome meal",
+      "Guided Ganga Aarti visit and cultural walk",
+      "Transfers from Dehradun or Haridwar railway station",
+      "Local guide and entry fees for scheduled sites"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "Train/flight tickets to Haridwar/Dehradun",
+      "Personal shopping and donations at temples",
+      "Optional wellness or spa treatments",
+      "Travel insurance and extra nights"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Haridwar city center (Har Ki Pauri area)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Respect local customs: modest clothing and quiet behaviour near ghats and temples",
+      "Ganga Aarti can be crowded — follow the guide’s instructions",
+      "Accessible to travellers of most fitness levels",
+      "Wear comfortable footwear; some areas have steps and uneven ground",
+      "Carry a small torch for evening walks if needed"
     ],
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Pooja Deshpande",
         "rating": 5,
         "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "text": "Such a moving experience — the Aarti felt very authentic and our guide explained everything clearly."
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
+        "name": "Viren Patel",
         "rating": 4,
-        "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "date": "2 months ago",
+        "text": "Short and sweet trip, perfect for a weekend spiritual reset."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
+        "name": "Deepa Rana",
         "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "date": "4 months ago",
+        "text": "Loved the local interactions and the food. The boat ride was peaceful at dawn."
       }
     ]
   },
+
   {
     "id": 6,
-    "title": "Valley of Flowers",
-    "duration": "12 days",
-    "price": 55000,
-    "type": "Adventure",
+    "title": "Valley of Flowers & Hemkund Sahib Trek",
+    "duration": "8 days",
+    "price": 52000,
+    "type": "Trekking",
     "rating": 4.9,
     "images": [
-     "/valleyOfFlowers.jpg",
-     "/rishikesh-yoga-ashram.png",
-     "/himalayan-trekking.png",
-     "/india-spiritual-adventure.png"
+      "/valleyOfFlowers.jpg",
+      "/valleyofFlowers2.jpg",
+      "/valleyOfFlowers3.jpg",
+      "/hillStation.jpg"
     ],
-    "description": "Journey through the valley of flowers",
+    "description": "A high-altitude alpine trek to the UNESCO-like meadows of Valley of Flowers, combined with a spiritual visit to Hemkund Sahib.",
     "highlights": [
-      "Daily yoga and meditation sessions with certified instructors",
-      "Participate in the mesmerizing Ganga Aarti ceremony",
-      "Visit ancient temples and traditional ashrams",
-      "Rejuvenating Ayurvedic spa treatments",
-      "Spiritual discourse with renowned gurus and masters"
+      "Walk through vast alpine meadows carpeted with seasonal wildflowers",
+      "Visit the sacred Hemkund Sahib gurudwara set beside a glacial lake",
+      "Experience the remote high-altitude culture of Chamoli region",
+      "Moderate trekking days with scenic campsite stays",
+      "Ideal for nature photographers and flowering-plant enthusiasts"
     ],
     "includes": [
-      "Accommodation in traditional ashram",
-      "All vegetarian meals (breakfast, lunch, dinner)",
-      "Daily yoga and meditation classes",
-      "Guided temple visits and spiritual tours",
-      "Airport transfers and local transportation",
-      "English-speaking spiritual guide"
+      "All forest and trekking permits required for Valley of Flowers",
+      "Accommodation in basecamp/guesthouses and tented nights on trek",
+      "Meals during trek and local transport as per itinerary",
+      "Experienced trekking guide and porters for group luggage",
+      "Pre-trek briefing, basic medical kit and emergency evacuation plan"
     ],
     "excludes": [
-      "International and domestic flight tickets",
-      "Personal expenses and shopping",
-      "Tips and gratuities for guides",
-      "Travel insurance",
-      "Any meals not mentioned in inclusions"
+      "Personal trekking gear and sleeping bags (rental available)",
+      "Travel insurance that covers high-altitude trekking",
+      "Airfare and railway tickets to Dehradun/Haridwar",
+      "Guide/porter tips and personal expenses",
+      "Seasonal helicopter transfers (not included)"
     ],
-    "meetingPoint": "Jolly Grant Airport, Dehradun",
+    "meetingPoint": "Govindghat (gateway village for Valley of Flowers & Hemkund)",
     "importantInfo": [
-      "Strictly vegetarian meals only - no non-veg food allowed",
-      "Alcohol and smoking are strictly prohibited in ashram premises",
-      "Comfortable, modest clothing required for yoga and temple visits",
-      "Valid government ID proof mandatory for all participants",
-      "Medical certificate required if you have any health conditions",
-      "Minimum age requirement: 16 years"
+      "Seasonal operation: best flowering months July–September (Valley closed in winter)",
+      "Trek reaches altitudes ~4000m; good fitness required",
+      "Carry warm clothing and waterproof layers (weather changes fast)",
+      "Respect fragile flora: do not pick flowers or stray from marked trails",
+      "A note on altitude sickness: acclimatize and stay hydrated"
     ],
     "reviews": [
       {
         "id": 1,
-        "name": "Priya Sharma",
+        "name": "Rina Bose",
         "rating": 5,
-        "date": "2 weeks ago",
-        "text": "Life-changing experience! The spiritual atmosphere and yoga sessions were incredible. The guides were knowledgeable and the ashram stay was authentic."
+        "date": "last month",
+        "text": "An otherworldly place — colours and calm unlike anywhere else. Guides took great care of the group."
       },
       {
         "id": 2,
-        "name": "Rajesh Kumar",
-        "rating": 4,
-        "date": "1 month ago",
-        "text": "Great organization and wonderful guides. The Ganga Aarti was mesmerizing and the meditation sessions helped me find inner peace."
+        "name": "Sandeep Malik",
+        "rating": 5,
+        "date": "3 months ago",
+        "text": "Beautiful route and well-paced days. Hemkund was spiritually moving and the campsite food was hearty."
       },
       {
         "id": 3,
-        "name": "Sarah Johnson",
-        "rating": 5,
-        "date": "2 months ago",
-        "text": "Perfect blend of spirituality and comfort. Highly recommended for soul searching. The vegetarian food was surprisingly delicious!"
+        "name": "Lata Sharma",
+        "rating": 4,
+        "date": "6 months ago",
+        "text": "Nature at its best. Do come prepared — some steep stretches but the scenery compensates for the effort."
       }
     ]
   }

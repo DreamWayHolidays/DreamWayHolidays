@@ -40,7 +40,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* What We Do */}
         <section className="bg-white rounded-3xl p-12 lg:p-16 mb-16 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative lg:order-1">
@@ -63,7 +62,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Our Mission */}
         <section className="bg-emerald-800 text-white rounded-3xl p-12 lg:p-16 mb-16 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
@@ -91,7 +89,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Why Choose Us */}
         <section className="bg-white rounded-3xl p-12 lg:p-16 mb-16 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative lg:order-1">

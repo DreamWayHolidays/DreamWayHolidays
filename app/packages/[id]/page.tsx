@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { Check, X, MapPin, Star, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react"
 import { useRouter } from "next/navigation";
+import BookingCard from "@/components/BookingCard";
 
 interface Review {
   id: number
@@ -106,8 +107,11 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="pt-20">
-      <section className="max-w-7xl mx-auto rounded-3xl p-6 md:p-8">
+      <div className="flex justify-between items-center w-full block md:hidden fixed bottom-0 bg-gray-100 px-2 py-3">
+        <button className="px-8 py-3 rounded-full bg-emerald-600 text-white font-medium text-md w-full">Check Availablity</button>
+      </div>
 
+      <section className="max-w-7xl mx-auto rounded-3xl p-6 md:p-8">
         <button onClick={() => router.back()} className="flex items-center text-emerald-600 hover:text-emerald-900 mb-4 transition-colors">
           <ArrowLeft className="w-5 h-5 mr-1" />
           <span className="text-sm font-medium">Go Back</span>
@@ -243,6 +247,7 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
             </div>
 
             <div className="space-y-8">
+              <BookingCard/>
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-900">Customer Reviews</h2>
                 <div className="text-center mb-8">
@@ -275,7 +280,7 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
                 <div>
                   {userReviews.length != 0 && <h3 className="font-bold text-xl mb-3">Highlighted Reviews</h3>}
 
-                  <div className="space-y-6 max-h-96 overflow-y-auto mb-6">
+                  <div className="space-y-6 max-h-96 mb-6 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                     {userReviews.length === 0 && (
                       <p className="text-gray-500 text-center">No reviews yet.</p>
                     )}
