@@ -59,7 +59,7 @@ export default function Home() {
               { title: "Himalayan Adventures", image: "/himalayan-trekking.png", type: "Adventure" },
               { title: "Cultural Heritage", image: "/taj-mahal-monuments.png", type: "Cultural" },
             ].map((destination, index) => (
-              <div key={index} className="package-card group">
+              <Link href={"/packages"} key={index} className="package-card group">
                 <div className="relative h-64 overflow-hidden">
                   <Image
                     src={destination.image || "/placeholder.svg"}
@@ -75,7 +75,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold">{destination.title}</h3>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
