@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Footer from "@/components/Footer"
 import HeaderController from "@/components/HeaderController"
+import {Toaster} from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         <HeaderController/>
+        <Toaster position="top-center"/>
         <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
