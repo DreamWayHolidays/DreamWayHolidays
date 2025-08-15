@@ -62,15 +62,21 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center">
                 <Mail size={18} className="mr-3 text-gray-100" />
-                <span className="font-medium">info@trek365.com</span>
+                <span className="font-medium">Team.trek365@gmail.com</span>
               </div>
               <div className="flex items-center">
                 <Phone size={18} className="mr-3 text-gray-100" />
-                <span className="font-medium">+91 98765 43210</span>
+                <span className="font-medium">7310735619,
+                  8954253877
+                 </span>
               </div>
               <div className="flex items-center">
-                <MapPin size={18} className="mr-3 text-gray-100" />
-                <span className="font-medium">Uttarakhand, India</span>
+                <MapPin size={18} className="mr-3 text-gray-100 w-8 md:w-10"/>
+                <p className="font-medium">277
+                  Saket colony 
+                  lane no 4
+                  Ajabpur kalan
+                  Dehradun uttrakhand</p>
               </div>
             </div>
           </div>
