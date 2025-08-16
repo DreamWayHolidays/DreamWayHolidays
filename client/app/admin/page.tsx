@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Plus, Search, Filter} from "lucide-react"
 import PackageCard from "@/components/PackageCard"
+import toast from "react-hot-toast"
+import axios from "axios"
 
 
 export default function PackagesPage() {
@@ -46,6 +48,20 @@ export default function PackagesPage() {
   useEffect(() => {
     getPackages();
   }, [])
+
+
+
+  const handleDelete = async (id: string | number) => {
+    try {
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/deletePackage/${id}`);
+      if (res.data.success) {
+        getPackages();
+        toast.success("Package deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Failed to delete package");
+    }
+  }
 
   return (
     <div className="space-y-8">
@@ -94,7 +110,7 @@ export default function PackagesPage() {
 
         <div className="flex flex-col gap-4">
           {filteredPackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} />
+            <PackageCard key={pkg.id} pkg={pkg} onDelete={handleDelete}/>
           ))}
         </div>
 
