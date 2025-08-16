@@ -6,26 +6,74 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Upload, X, Plus } from "lucide-react"
 import Link from "next/link"
+import toast from "react-hot-toast"
+import axios from "axios"
 
 export default function CreatePackage() {
     const router = useRouter()
-    const [formData, setFormData] = useState({
+
+    interface FormData {
+        title: string;
+        description: string;
+        duration: string;
+        price: string;
+        type: string;
+        images: string[];
+        highlights: string[];
+        includes: string[];
+        excludes: string[];
+        importantInfo: string[];
+        meetingPoint: string;
+    }
+
+
+    const [formData, setFormData] = useState<FormData>({
         title: "",
         description: "",
         duration: "",
         price: "",
-        type: "Spiritual",
-        status: "draft",
+        type: "",
+        images: [],
         highlights: [""],
         includes: [""],
         excludes: [""],
         importantInfo: [""],
         meetingPoint: "",
-    })
+    });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        router.push("/admin")
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append("title", formData.title);
+            formDataToSend.append("description", formData.description);
+            formDataToSend.append("duration", formData.duration);
+            formDataToSend.append("price", formData.price);
+            formDataToSend.append("type", formData.type);
+            formDataToSend.append("meetingPoint", formData.meetingPoint);
+            formDataToSend.append("highlights", JSON.stringify(formData.highlights));
+            formDataToSend.append("includes", JSON.stringify(formData.includes));
+            formDataToSend.append("excludes", JSON.stringify(formData.excludes));
+            formDataToSend.append("importantInfo", JSON.stringify(formData.importantInfo));
+
+            formData.images.forEach((file) => {
+                formDataToSend.append("images", file);
+            });
+
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/createPackage`, formDataToSend);
+
+            if (res.data.success) {
+                toast.success("Package created successfully")
+                router.push("/admin")
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                toast.error(error.message)
+            }
+            else {
+                toast.error("An unexpected error occurred")
+            }
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -58,6 +106,43 @@ export default function CreatePackage() {
             [field]: updatedArray,
         })
     }
+
+    const MAX_IMAGES = 4;
+    const [imageFiles, setImageFiles] = useState<File[]>([]);
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return;
+        const selected = Array.from(e.target.files);
+
+        const availableSlots = MAX_IMAGES - formData.images.length;
+        if (availableSlots <= 0) {
+            toast.error(`You can upload up to ${MAX_IMAGES} images.`);
+            return;
+        }
+
+        const toAdd = selected.slice(0, availableSlots);
+        const previews = toAdd.map((f) => URL.createObjectURL(f));
+
+        setFormData((prev) => ({
+            ...prev,
+            images: [...prev.images, ...previews],
+        }));
+
+        setImageFiles((prev) => [...prev, ...toAdd]);
+        e.currentTarget.value = "";
+    };
+
+    const removeImage = (index: number) => {
+        const url = formData.images[index];
+        if (url) URL.revokeObjectURL(url);
+
+        setFormData((prev) => ({
+            ...prev,
+            images: prev.images.filter((_, i) => i !== index),
+        }));
+        setImageFiles((prev) => prev.filter((_, i) => i !== index));
+    };
+
 
     return (
         <div className="space-y-8">
@@ -156,6 +241,7 @@ export default function CreatePackage() {
                                         onChange={handleChange}
                                         className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
                                         placeholder="e.g., Jolly Grant Airport, Dehradun"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -185,6 +271,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("highlights", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="Enter a highlight..."
+                                                required
                                             />
                                             {formData.highlights.length > 1 && (
                                                 <button
@@ -221,6 +308,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("includes", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="What's included..."
+                                                required
                                             />
                                             {formData.includes.length > 1 && (
                                                 <button
@@ -257,6 +345,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("excludes", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="What's not included..."
+                                                required
                                             />
                                             {formData.excludes.length > 1 && (
                                                 <button
@@ -293,6 +382,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("importantInfo", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
                                                 placeholder="Important information..."
+                                                required
                                             />
                                             {formData.importantInfo.length > 1 && (
                                                 <button
@@ -313,39 +403,46 @@ export default function CreatePackage() {
                     <div className="space-y-8">
                         <div className="bg-white rounded-2xl shadow-lg p-6">
                             <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
-
-                                <div className="flex flex-col space-y-3">
-                                    <button
-                                        type="submit"
-                                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105"
-                                    >
-                                        Save Changes
-                                    </button>
-                                    <Link
-                                        href="/admin/packages"
-                                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all text-center"
-                                    >
-                                        Cancel
-                                    </Link>
-                                </div>
+                            <div className="flex flex-col space-y-3">
+                                <button type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
+                                    Save
+                                </button>
+                                <Link href="/admin" className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all text-center">
+                                    Cancel
+                                </Link>
+                            </div>
                         </div>
 
                         <div className="bg-white rounded-2xl shadow-lg p-6">
                             <h3 className="text-lg font-bold text-gray-900 mb-4">Package Image</h3>
-
-                            <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors">
+                            <label htmlFor="file-upload" className="cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors block">
                                 <Upload className="mx-auto text-gray-400 mb-4" size={48} />
                                 <p className="text-gray-600 mb-2">Drop your image here, or browse</p>
                                 <p className="text-sm text-gray-500">Supports: JPG, PNG, WebP</p>
-                                <input type="file" className="hidden" accept="image/*" />
+                                <input id="file-upload" type="file" accept="image/*" multiple className="hidden" required onChange={handleImageChange} />
+                                <label htmlFor="file-upload" className="block mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors">
+                                    Choose File
+                                </label>
+                            </label>
+                        </div>
+
+                        {formData.images.map((img, index) => (
+                            <div key={index} className="relative">
+                                <img
+                                    src={img}
+                                    alt={`Preview ${index + 1}`}
+                                    className="w-full h-40 object-cover rounded-lg"
+                                />
                                 <button
                                     type="button"
-                                    className="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors"
+                                    onClick={() => removeImage(index)}
+                                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow"
                                 >
-                                    Choose File
+                                    <X size={16} />
                                 </button>
                             </div>
-                        </div>
+                        ))}
+
                     </div>
                 </div>
             </form>

@@ -1,4 +1,4 @@
-import packagetModel from "../models/packageModel.js";
+import packageModel from "../models/packageModel.js";
 import userModel from "../models/userModel.js";
 
 export const getPackagesController = async (req, res, next) => {
@@ -67,22 +67,22 @@ export const deletePackageController = async (req, res, next) => {
 
         if (!id) {
             return res.status(400).send({
-                msg: "Post ID is required",
+                msg: "Package ID is required",
                 success: false,
             });
         }
 
-        const post = await postModel.findByIdAndDelete(id);
+        const pkg = await packageModel.findByIdAndDelete(id);
 
-        if (!post) {
+        if (!pkg) {
             return res.status(404).send({
-                msg: "Post not found",
+                msg: "Package not found",
                 success: false,
             });
         }
 
         res.status(200).send({
-            msg: "Post deleted successfully",
+            msg: "Package deleted successfully",
             success: true,
         });
         
@@ -96,21 +96,21 @@ export const deletePackageController = async (req, res, next) => {
 
 export const getPackageByIdController = async (req, res, next) => {
     try {
-        const { uid } = req.params;
+        const { pid } = req.params;
 
-        if (!uid) {
+        if (!pid) {
             return res.status(400).send({
-                msg: "User ID is required",
+                msg: "Package ID is required",
                 success: false,
             });
         }
 
-        const userPosts = await postModel.find({ userId: uid }).sort({ createdAt: -1 });
+        const pkg = await packageModel.find({ _id : pid }).sort({ createdAt: -1 });
 
         res.status(200).send({
-            msg: "User posts fetched successfully",
+            msg: "Package fetched successfully",
             success: true,
-            userPosts,
+            pkg,
         });
         
     } catch (error) {
