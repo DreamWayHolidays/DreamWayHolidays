@@ -55,9 +55,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Spiritual Rishikesh", image: "/rishikesh-yoga-ashram.png", type: "Spiritual" },
-              { title: "Himalayan Adventures", image: "/himalayan-trekking.png", type: "Adventure" },
-              { title: "Cultural Heritage", image: "/taj-mahal-monuments.png", type: "Cultural" },
+              { title: "Spiritual Rishikesh", image: "https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354112/rishikesh-Ganga-aarti_ddmgsv.jpg", type: "Spiritual" },
+              { title: "Himalayan Adventures", image: "https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg", type: "Adventure" },
+              { title: "Heritage Trails", image: "https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354630/heritage_trails_ve972r.jpg", type: "Cultural" },
             ].map((destination, index) => (
               <Link href={"/packages"} key={index} className="package-card group">
                 <div className="relative h-64 overflow-hidden">

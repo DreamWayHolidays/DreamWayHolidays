@@ -72,13 +72,13 @@ export const createPackageController = async (req, res, next) => {
       const title = normalizeField(fields.title);
       const description = normalizeField(fields.description);
       const duration = normalizeField(fields.duration);
-      const price = Number(normalizeField(fields.price, "0"));
+      const price = normalizeField(fields.price, "0");
       const type = normalizeField(fields.type);
       const meetingPoint = normalizeField(fields.meetingPoint);
-      const highlights = normalizeArrayField(fields.highlights);
-      const includes = normalizeArrayField(fields.includes);
-      const excludes = normalizeArrayField(fields.excludes);
-      const importantInfo = normalizeArrayField(fields.importantInfo);
+      const highlights = normalizeArrayField(JSON.parse(fields.highlights));
+      const includes = normalizeArrayField(JSON.parse(fields.includes));
+      const excludes = normalizeArrayField(JSON.parse(fields.excludes));
+      const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
 
 
       if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length) {

@@ -34,10 +34,10 @@ export default function CreatePackage() {
         price: "",
         type: "Spiritual",
         images: [],
-        highlights: [""],
-        includes: [""],
-        excludes: [""],
-        importantInfo: [""],
+        highlights: [],
+        includes: [],
+        excludes: [],
+        importantInfo: [],
         meetingPoint: "",
     });
 

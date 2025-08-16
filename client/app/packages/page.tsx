@@ -4,12 +4,14 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Search, Star } from "lucide-react"
+import axios from "axios"
+import toast from "react-hot-toast"
 
 
 export default function Packages() {
 
   interface Package {
-    id: number;
+    _id: string;
     title: string;
     duration: string;
     price: number;
@@ -24,14 +26,13 @@ export default function Packages() {
 
   const getPackages = async (): Promise<void> => {
     try {
-      const res = await fetch("/packages.json");
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackages`);
+      if (res.data.success) {
+       const data: Package[] = res.data.Packages;
+       setPackages(data);       
       }
-      const data: Package[] = await res.json();
-      setPackages(data);
     } catch (error) {
-      console.error("Failed to fetch packages:", error);
+      toast.error("Failed to fetch packages");
     }
   };
 
@@ -73,7 +74,7 @@ export default function Packages() {
 
       <section className="relative h-96 flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
-          <Image src="/himalayan-trekking-adventure.png" alt="Travel packages" fill className="object-cover" />
+          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg" alt="Travel packages" fill className="object-cover" />
           <div className="hero-overlay"></div>
         </div>
         <div className="relative z-10 text-center">
@@ -149,7 +150,7 @@ export default function Packages() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPackages.map((pkg) => (
-              <div key={pkg.id} className="package-card group">
+              <div key={pkg._id} className="package-card group">
                 <div className="relative h-64 overflow-hidden">
                   <Image
                     src={pkg.images[0] || "/placeholder.svg"}
@@ -184,7 +185,7 @@ export default function Packages() {
                   <div className="flex justify-between items-center">
                     <span className="text-3xl font-black text-emerald-600">₹{pkg.price.toLocaleString()}</span>
                     <Link
-                      href={`/packages/${pkg.id}`}
+                      href={`/packages/${pkg._id}`}
                       className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-semibold transition-all hover:scale-105"
                     >
                       Explore
