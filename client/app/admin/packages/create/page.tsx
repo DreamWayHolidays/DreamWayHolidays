@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Upload, X, Plus } from "lucide-react"
@@ -11,6 +10,7 @@ import axios from "axios"
 
 export default function CreatePackage() {
     const router = useRouter()
+    const [saveStatus, setSaveStatus] = useState("Save");
 
     interface FormData {
         title: string;
@@ -32,7 +32,7 @@ export default function CreatePackage() {
         description: "",
         duration: "",
         price: "",
-        type: "",
+        type: "Spiritual",
         images: [],
         highlights: [""],
         includes: [""],
@@ -41,9 +41,13 @@ export default function CreatePackage() {
         meetingPoint: "",
     });
 
+    const [imageFiles, setImageFiles] = useState<File[]>([]);
+
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         try {
+            setSaveStatus("Saving...");
             const formDataToSend = new FormData();
             formDataToSend.append("title", formData.title);
             formDataToSend.append("description", formData.description);
@@ -56,7 +60,7 @@ export default function CreatePackage() {
             formDataToSend.append("excludes", JSON.stringify(formData.excludes));
             formDataToSend.append("importantInfo", JSON.stringify(formData.importantInfo));
 
-            formData.images.forEach((file) => {
+            imageFiles.forEach((file) => {
                 formDataToSend.append("images", file);
             });
 
@@ -64,9 +68,11 @@ export default function CreatePackage() {
 
             if (res.data.success) {
                 toast.success("Package created successfully")
+                setSaveStatus("Save");
                 router.push("/admin")
             }
         } catch (error) {
+            setSaveStatus("Save");
             if (error instanceof Error) {
                 toast.error(error.message)
             }
@@ -108,27 +114,43 @@ export default function CreatePackage() {
     }
 
     const MAX_IMAGES = 4;
-    const [imageFiles, setImageFiles] = useState<File[]>([]);
+    const MAX_SIZE_MB = 2;
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
         const selected = Array.from(e.target.files);
 
         const availableSlots = MAX_IMAGES - formData.images.length;
+
         if (availableSlots <= 0) {
             toast.error(`You can upload up to ${MAX_IMAGES} images.`);
             return;
         }
 
         const toAdd = selected.slice(0, availableSlots);
-        const previews = toAdd.map((f) => URL.createObjectURL(f));
+        const validFiles: File[] = [];
+        const previews: string[] = [];
+
+        for (const file of toAdd) {
+            if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+                toast.error(`${file.name} is larger than ${MAX_SIZE_MB} MB. Please upload a smaller file.`);
+                continue;
+            }
+
+            validFiles.push(file);
+            previews.push(URL.createObjectURL(file));
+        }
+
+        if (validFiles.length === 0) return;
+
 
         setFormData((prev) => ({
             ...prev,
             images: [...prev.images, ...previews],
         }));
 
-        setImageFiles((prev) => [...prev, ...toAdd]);
+        setImageFiles((prev) => [...prev, ...validFiles]);
+
         e.currentTarget.value = "";
     };
 
@@ -217,13 +239,7 @@ export default function CreatePackage() {
 
                                     <div>
                                         <label className="block text-sm font-semibold text-gray-700 mb-2">Type *</label>
-                                        <select
-                                            name="type"
-                                            value={formData.type}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
-                                            required
-                                        >
+                                        <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none" required>
                                             <option value="Spiritual">Spiritual</option>
                                             <option value="Adventure">Adventure</option>
                                             <option value="Cultural">Cultural</option>
@@ -405,7 +421,7 @@ export default function CreatePackage() {
                             <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
                             <div className="flex flex-col space-y-3">
                                 <button type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
-                                    Save
+                                    {saveStatus}
                                 </button>
                                 <Link href="/admin" className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all text-center">
                                     Cancel
@@ -418,8 +434,8 @@ export default function CreatePackage() {
                             <label htmlFor="file-upload" className="cursor-pointer border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors block">
                                 <Upload className="mx-auto text-gray-400 mb-4" size={48} />
                                 <p className="text-gray-600 mb-2">Drop your image here, or browse</p>
-                                <p className="text-sm text-gray-500">Supports: JPG, PNG, WebP</p>
-                                <input id="file-upload" type="file" accept="image/*" multiple className="hidden" required onChange={handleImageChange} />
+                                <p className="text-sm text-gray-500">Supports: JPG, PNG, WebP, Max: 2MB</p>
+                                <input id="file-upload" type="file" accept="image/*" multiple className="hidden" onChange={handleImageChange} />
                                 <label htmlFor="file-upload" className="block mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors">
                                     Choose File
                                 </label>

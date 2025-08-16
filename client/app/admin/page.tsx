@@ -11,7 +11,7 @@ import axios from "axios"
 export default function PackagesPage() {
 
   interface Package {
-    id: string;
+    _id: string;
     title: string;
     duration: string;
     price: number;
@@ -34,12 +34,11 @@ export default function PackagesPage() {
 
   const getPackages = async (): Promise<void> => {
     try {
-      const res = await fetch("/packages.json");
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackages`);
+      if(res.data.success){
+       const data: Package[] = res.data.Packages;
+       setPackages(data);
       }
-      const data: Package[] = await res.json();
-      setPackages(data);
     } catch (error) {
       console.error("Failed to fetch packages:", error);
     }
@@ -48,7 +47,6 @@ export default function PackagesPage() {
   useEffect(() => {
     getPackages();
   }, [])
-
 
 
   const handleDelete = async (id: string | number) => {
@@ -110,7 +108,7 @@ export default function PackagesPage() {
 
         <div className="flex flex-col gap-4">
           {filteredPackages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} onDelete={handleDelete}/>
+            <PackageCard key={pkg?._id} pkg={pkg} onDelete={handleDelete}/>
           ))}
         </div>
 

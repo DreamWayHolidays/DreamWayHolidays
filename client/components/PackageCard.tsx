@@ -7,7 +7,7 @@ import Link from "next/link"
 
 interface PackageCardProps {
   pkg: {
-    id: string | number
+    _id: string 
     title: string
     description: string
     duration: string
@@ -16,7 +16,7 @@ interface PackageCardProps {
     rating: number
     images: string[]
   }
-  onDelete?: (id: string | number) => void
+  onDelete?: (_id: string) => void
 }
 
 const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
@@ -56,21 +56,21 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
 
           <div className="flex gap-2">
             <Link
-              href={`/packages/${pkg.id}`}
+              href={`/packages/${pkg._id}`}
               className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition"
               title="View Package"
             >
               <Eye className="text-blue-600" size={18} />
             </Link>
             <Link
-              href={`/admin/packages/edit/${pkg.id}`}
+              href={`/admin/packages/edit/${pkg._id}`}
               className="p-2 rounded-lg bg-yellow-100 hover:bg-yellow-200 transition"
               title="Edit Package"
             >
               <Edit className="text-yellow-600" size={18} />
             </Link>
             <button
-              onClick={() => onDelete?.(pkg.id)}
+              onClick={() => onDelete?.(pkg._id)}
               className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
               title="Delete Package"
             >

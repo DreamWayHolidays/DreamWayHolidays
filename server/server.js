@@ -19,7 +19,7 @@ app.use(cors());
 
 // routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/package",packageRoutes);
+app.use("/api/v1/packages",packageRoutes);
 
 
 app.get("/", (req, res) =>{
