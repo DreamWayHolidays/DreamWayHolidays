@@ -1,21 +1,41 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+import { useRouter, useParams } from "next/navigation"
 import { ArrowLeft, Upload, X, Plus } from "lucide-react"
 import Link from "next/link"
+import toast from "react-hot-toast"
+import axios from "axios"
 
-export default function CreatePackage() {
+export default function EditPackage() {
     const router = useRouter()
-    const [formData, setFormData] = useState({
+    const params = useParams()
+    const packageId = params?.id as string;
+    const [saveStatus, setSaveStatus] = useState("Update")
+    const [loading, setLoading] = useState(true)
+
+    interface FormData {
+        title: string
+        description: string
+        duration: string
+        price: string
+        type: string
+        images: string[]
+        highlights: string[]
+        includes: string[]
+        excludes: string[]
+        importantInfo: string[]
+        meetingPoint: string
+    }
+
+    const [formData, setFormData] = useState<FormData>({
         title: "",
         description: "",
         duration: "",
         price: "",
         type: "Spiritual",
-        status: "draft",
+        images: [],
         highlights: [""],
         includes: [""],
         excludes: [""],
@@ -23,40 +43,92 @@ export default function CreatePackage() {
         meetingPoint: "",
     })
 
-    const handleSubmit = (e: React.FormEvent) => {
+    useEffect(() => {
+        if (!packageId) return
+
+        const fetchPackage = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackage/${packageId}`)
+                if (res.data.success) {
+                    const pkg = res.data.pkg[0];
+                    setFormData({
+                        title: pkg.title || "",
+                        description: pkg.description || "",
+                        duration: pkg.duration || "",
+                        price: pkg.price?.toString() || "",
+                        type: pkg.type || "Spiritual",
+                        meetingPoint: pkg.meetingPoint || "",
+                        images: pkg.images || [],
+                        highlights: pkg.highlights?.length ? pkg.highlights : [""],
+                        includes: pkg.includes?.length ? pkg.includes : [""],
+                        excludes: pkg.excludes?.length ? pkg.excludes : [""],
+                        importantInfo: pkg.importantInfo?.length ? pkg.importantInfo : [""],
+                    })
+                }
+            } catch (err) {
+                toast.error("Failed to load package data")
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchPackage()
+    }, [packageId])
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        router.push("/admin")
+        try {
+            setSaveStatus("Updating...")
+
+            const formDataToSend = new FormData()
+            formDataToSend.append("title", formData.title)
+            formDataToSend.append("description", formData.description)
+            formDataToSend.append("duration", formData.duration)
+            formDataToSend.append("price", formData.price)
+            formDataToSend.append("type", formData.type)
+            formDataToSend.append("meetingPoint", formData.meetingPoint)
+            formDataToSend.append("highlights", JSON.stringify(formData.highlights))
+            formDataToSend.append("includes", JSON.stringify(formData.includes))
+            formDataToSend.append("excludes", JSON.stringify(formData.excludes))
+            formDataToSend.append("importantInfo", JSON.stringify(formData.importantInfo))
+            formDataToSend.append("images", JSON.stringify(formData.images) )
+
+
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/updatePackage/${packageId}`, formDataToSend)
+
+            if (res.data.success) {
+                toast.success("Package updated successfully")
+                setSaveStatus("Update")
+                router.push("/admin")
+            }
+        } catch (error) {
+            setSaveStatus("Update")
+            if (error instanceof Error) toast.error(error.message)
+            else toast.error("An unexpected error occurred")
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        })
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleArrayChange = (field: string, index: number, value: string) => {
         const updatedArray = [...(formData[field as keyof typeof formData] as string[])]
         updatedArray[index] = value
-        setFormData({
-            ...formData,
-            [field]: updatedArray,
-        })
+        setFormData({ ...formData, [field]: updatedArray })
     }
 
     const addArrayItem = (field: string) => {
-        setFormData({
-            ...formData,
-            [field]: [...(formData[field as keyof typeof formData] as string[]), ""],
-        })
+        setFormData({ ...formData, [field]: [...(formData[field as keyof typeof formData] as string[]), ""] })
     }
 
     const removeArrayItem = (field: string, index: number) => {
         const updatedArray = (formData[field as keyof typeof formData] as string[]).filter((_, i) => i !== index)
-        setFormData({
-            ...formData,
-            [field]: updatedArray,
-        })
+        setFormData({ ...formData, [field]: updatedArray })
+    }
+
+    if (loading) {
+        return <div className="p-8 text-gray-500">Loading package...</div>
     }
 
     return (
@@ -65,9 +137,7 @@ export default function CreatePackage() {
                 <Link href="/admin" className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
                     <ArrowLeft size={20} />
                 </Link>
-                <div>
-                    <h1 className="text-3xl font-black text-gray-900">Edit Package</h1>
-                </div>
+                <h1 className="text-3xl font-black text-gray-900">Edit Package</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -132,13 +202,7 @@ export default function CreatePackage() {
 
                                     <div>
                                         <label className="block text-sm font-semibold text-gray-700 mb-2">Type *</label>
-                                        <select
-                                            name="type"
-                                            value={formData.type}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
-                                            required
-                                        >
+                                        <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none" required>
                                             <option value="Spiritual">Spiritual</option>
                                             <option value="Adventure">Adventure</option>
                                             <option value="Cultural">Cultural</option>
@@ -156,6 +220,7 @@ export default function CreatePackage() {
                                         onChange={handleChange}
                                         className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
                                         placeholder="e.g., Jolly Grant Airport, Dehradun"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -185,6 +250,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("highlights", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="Enter a highlight..."
+                                                required
                                             />
                                             {formData.highlights.length > 1 && (
                                                 <button
@@ -213,7 +279,7 @@ export default function CreatePackage() {
                                     </button>
                                 </div>
                                 <div className="space-y-3">
-                                    {formData.includes.map((item, index) => (
+                                    {formData?.includes?.map((item, index) => (
                                         <div key={index} className="flex items-center space-x-3">
                                             <input
                                                 type="text"
@@ -221,6 +287,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("includes", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="What's included..."
+                                                required
                                             />
                                             {formData.includes.length > 1 && (
                                                 <button
@@ -257,6 +324,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("excludes", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
                                                 placeholder="What's not included..."
+                                                required
                                             />
                                             {formData.excludes.length > 1 && (
                                                 <button
@@ -293,6 +361,7 @@ export default function CreatePackage() {
                                                 onChange={(e) => handleArrayChange("importantInfo", index, e.target.value)}
                                                 className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none"
                                                 placeholder="Important information..."
+                                                required
                                             />
                                             {formData.importantInfo.length > 1 && (
                                                 <button
@@ -309,44 +378,17 @@ export default function CreatePackage() {
                             </div>
                         </div>
                     </div>
-
-                    <div className="space-y-8">
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
-
-                                <div className="flex flex-col space-y-3">
-                                    <button
-                                        type="submit"
-                                        className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105"
-                                    >
-                                        Save Changes
-                                    </button>
-                                    <Link
-                                        href="/admin/packages"
-                                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all text-center"
-                                    >
-                                        Cancel
-                                    </Link>
-                                </div>
-                        </div>
-
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4">Package Image</h3>
-
-                            <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors">
-                                <Upload className="mx-auto text-gray-400 mb-4" size={48} />
-                                <p className="text-gray-600 mb-2">Drop your image here, or browse</p>
-                                <p className="text-sm text-gray-500">Supports: JPG, PNG, WebP</p>
-                                <input type="file" className="hidden" accept="image/*" />
-                                <button
-                                    type="button"
-                                    className="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors"
-                                >
-                                    Choose File
-                                </button>
-                            </div>
-                        </div>
+                <div className="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
+                    <div className="flex flex-col space-y-3">
+                        <button disabled={saveStatus === "Updating..."} type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
+                            {saveStatus}
+                        </button>
+                        <Link href="/admin" className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold text-center">
+                            Cancel
+                        </Link>
                     </div>
+                </div>
                 </div>
             </form>
         </div>

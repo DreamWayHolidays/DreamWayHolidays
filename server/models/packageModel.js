@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  rating: { type: Number, required: true, min: 0, max: 5, default: 1 },
+  rating: { type: Number, required: true, min: 0, max: 5, default: 5 },
   text: { type: String, required: true }
 },{timestamps: true});
 
@@ -11,7 +11,7 @@ const packageSchema = new mongoose.Schema({
   duration: { type: String, required: true },
   price: { type: String, required: true },
   type: { type: String, required: true, },
-  rating: { type: Number, required: true, min: 0, max: 5, default: 1 },
+  rating: { type: Number, required: true, min: 0, max: 5, default: 5 },
   images: [{ type: String, required: true }],
   description: { type: String, required: true },
   highlights: [{ type: String, required: true }],

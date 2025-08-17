@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import BookingCard from "@/components/BookingCard";
 import { FaWhatsapp } from "react-icons/fa";
 import axios from "axios";
+import Link from "next/link";
 
 
 interface Review {
@@ -33,7 +34,7 @@ interface Package {
   importantInfo: string[]
 }
 
-export default function PackageDetails({ params }: { params: Promise<{ id: string }> }) {
+export default function PackageDetails({ params }: { params: Promise<{ id: string }>}) {
   const router = useRouter();
   const unwrappedParams = React.use(params)
   const pid = unwrappedParams.id
@@ -50,9 +51,8 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
       const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackage/${pid}`);
       
       if (res.data.success) {
-        console.log("Package data:", res.data.pkg);
-        setPkg(res.data.pkg)
-        setUserReviews(res.data.pkg.reviews || [])
+        setPkg(res.data.pkg[0])
+        setUserReviews(res.data.pkg[0].reviews || [])
       } 
     } catch (error) {
       setError("Package not found")
@@ -89,10 +89,7 @@ if (error)
 
 if (!pkg) return null
 
-const averageRating =
-  userReviews.length > 0
-    ? userReviews.reduce((acc, review) => acc + review.rating, 0) / userReviews.length
-    : 0
+const averageRating = userReviews.length > 0 ? userReviews.reduce((acc, review) => acc + review.rating, 0) / userReviews.length : 1
 
 return (
   <div className="pt-20">
@@ -127,7 +124,7 @@ return (
         </div>
       </div>
 
-      <div className="hidden md:grid grid-cols-4 gap-4">
+      <div className="hidden md:grid grid-cols-4 gap-2">
         <div className="col-span-3 overflow-hidden rounded-xl">
           <Image
             src={pkg?.images?.length > 0 ? pkg.images[0] : "/placeholder.svg"}
@@ -170,11 +167,6 @@ return (
 
     <div className="section-padding">
       <div className="max-w-6xl mx-auto">
-        {/* <div className="mt-6 flex justify-end">
-           <button className="px-6 py-3 text-white text-lg font-semibold rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-transform duration-200">
-             Check Availablity
-           </button>
-          </div> */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
             {[
@@ -217,9 +209,9 @@ return (
 
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-2xl font-bold mb-6 text-gray-900">Meeting Point</h2>
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center w-full md:w-[75%]">
+                  <div className="w-12 md:h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
                     <MapPin className="text-emerald-600" size={24} />
                   </div>
                   <div>
@@ -227,14 +219,16 @@ return (
                     <p className="text-gray-600">We'll pick you up from here</p>
                   </div>
                 </div>
-                <a
+                <div className="flex justify-center items-center w-full md:w-[20%]">
+                <Link
                   href={`https://maps.google.com/?q=${encodeURIComponent(pkg?.meetingPoint)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-emerald-600 mt-4 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-semibold transition-all hover:scale-105"
+                  className="bg-emerald-600 text-sm hover:bg-emerald-700 text-white px-4 py-2 rounded-full font-semibold transition-all hover:scale-105"
                 >
                   View on Map
-                </a>
+                </Link>
+                </div>
               </div>
             </div>
           </div>

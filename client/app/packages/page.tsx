@@ -74,7 +74,7 @@ export default function Packages() {
 
       <section className="relative h-96 flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
-          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg" alt="Travel packages" fill className="object-cover" />
+          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg" alt="Travel packages" fill priority className="object-cover" />
           <div className="hero-overlay"></div>
         </div>
         <div className="relative z-10 text-center">
@@ -175,7 +175,7 @@ export default function Packages() {
                   <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-emerald-600 transition-colors">
                     {pkg.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{pkg.description}</p>
+                  <p className="text-gray-600 mb-4">{pkg.description.slice(0,130)}...</p>
 
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-gray-500">{pkg.duration}</span>

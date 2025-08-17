@@ -48,6 +48,11 @@ export default function CreatePackage() {
         e.preventDefault()
         try {
             setSaveStatus("Saving...");
+            toast("Please do not refresh or close this window, image upload may take a few seconds...", {
+                duration: 3000,
+                icon: "⏳",
+            });
+
             const formDataToSend = new FormData();
             formDataToSend.append("title", formData.title);
             formDataToSend.append("description", formData.description);
@@ -420,7 +425,7 @@ export default function CreatePackage() {
                         <div className="bg-white rounded-2xl shadow-lg p-6">
                             <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
                             <div className="flex flex-col space-y-3">
-                                <button type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
+                                <button disabled={saveStatus === "Saving..."} type="submit" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
                                     {saveStatus}
                                 </button>
                                 <Link href="/admin" className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-semibold transition-all text-center">

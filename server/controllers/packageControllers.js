@@ -120,6 +120,66 @@ export const createPackageController = async (req, res, next) => {
 
 
 
+export const updatePackageController = async (req, res, next) => {
+
+  const {pid} = req.params;
+  
+  const form = formidable({ multiples: true, keepExtensions: true });
+
+  form.parse(req, async (err, fields, files) => {
+    try {
+
+      if (err) return next(err);
+
+      const title = normalizeField(fields.title);
+      const description = normalizeField(fields.description);
+      const duration = normalizeField(fields.duration);
+      const price = normalizeField(fields.price, "0");
+      const type = normalizeField(fields.type);
+      const meetingPoint = normalizeField(fields.meetingPoint);
+      const highlights = normalizeArrayField(JSON.parse(fields.highlights));
+      const includes = normalizeArrayField(JSON.parse(fields.includes));
+      const excludes = normalizeArrayField(JSON.parse(fields.excludes));
+      const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
+      const images = normalizeArrayField(JSON.parse(fields.images));
+
+      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length) {
+        return res.status(400).json({ success: false, msg: "Missing required fields." });
+      }
+
+
+      const pkg = {
+        title,
+        description,
+        duration,
+        price,
+        type,
+        meetingPoint,
+        highlights,
+        includes,
+        excludes,
+        importantInfo,
+        images,
+      }
+
+     const updatedPkg = await packageModel.findByIdAndUpdate(pid, pkg, { new: true, runValidators: true } );
+
+      if(!updatedPkg) {
+         return res.status(404).send({ success: false, msg: "Package not found or could not be updated." });
+      }
+
+      return res.status(200).json({
+        success: true,
+        msg: "Package created successfully",
+      });
+    } catch (error) {
+       next(error);
+    }
+  });
+};
+
+
+
 export const deletePackageController = async (req, res, next) => {
     try {
 
@@ -165,7 +225,7 @@ export const getPackageByIdController = async (req, res, next) => {
             });
         }
 
-        const pkg = await packageModel.find({ _id : pid }).sort({ createdAt: -1 });
+        const pkg = await packageModel.find({ _id : pid });
 
         res.status(200).send({
             msg: "Package fetched successfully",
