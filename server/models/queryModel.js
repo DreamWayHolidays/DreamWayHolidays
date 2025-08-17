@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const querySchema = new mongoose.Schema({
 
     name : {
         type : String,
@@ -10,17 +10,12 @@ const userSchema = new mongoose.Schema({
     email : {
         type : String,
         required : true,
-        unique : true
     },
 
-    password: {
+    message: {
       type: String,
     },
-
-    role : {
-        type : String
-    }
 }, {timestamps: true});
 
 
-export default mongoose.model("users", userSchema);
+export default mongoose.model("queries", querySchema);

@@ -3,7 +3,9 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Mail, Phone, MapPin, Clock, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, CheckCircle } from "lucide-react"
+import toast from "react-hot-toast"
+import axios from "axios"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,14 +13,21 @@ export default function Contact() {
     email: "",
     message: "",
   })
+
   const [showThankYou, setShowThankYou] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.name && formData.email && formData.message) {
-      setShowThankYou(true)
-      setFormData({ name: "", email: "", message: "" })
-      setTimeout(() => setShowThankYou(false), 5000)
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/query/submitQuery`, formData)
+      if (res.data.success) {
+        setShowThankYou(true)
+        setFormData({ name: "", email: "", message: "" })
+        setTimeout(() => setShowThankYou(false), 5000)
+        return
+      }
+    } catch (error) {
+      toast.error("Failed to send message");
     }
   }
 

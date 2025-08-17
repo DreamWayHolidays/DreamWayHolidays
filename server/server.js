@@ -5,6 +5,7 @@ import { connectDB } from "./config/db.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
 import packageRoutes from "./routes/packageRoutes.js";
+import queryRoutes from "./routes/queryRoutes.js";
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,8 @@ app.use(cors());
 // routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/packages",packageRoutes);
+app.use("/api/v1/query", queryRoutes);
+
 
 
 app.get("/", (req, res) =>{
