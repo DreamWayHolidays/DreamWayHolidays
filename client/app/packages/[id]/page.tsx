@@ -290,10 +290,10 @@ return (
                   )}
                   {userReviews.slice(0, 3).map((review) => (
                     <div key={review._id} className="border-b border-gray-200 pb-4 mt-6">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="font-semibold text-gray-900">{review.name}</span>
-                        <span className="text-sm text-gray-500">{review.date}</span>
-                      </div>
+                        <div className="flex gap-1 items-center mb-1">
+                          <div className="bg-gray-600 flex justify-center items-center w-8 h-8 rounded-full"><p className="text-sm font-bold text-white text-center">{review.name.charAt(0)}</p></div>
+                          <span className="font-semibold text-gray-900">{review.name}</span>
+                        </div>
                       <div className="flex mb-1">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <Star
