@@ -237,3 +237,47 @@ export const getPackageByIdController = async (req, res, next) => {
         next(error);
     }
 }
+
+
+
+export const createReviewController = async (req, res, next) => {
+  try {
+    const { pid } = req.params;
+    const { name, rating, text } = req.body;
+
+    if (!pid || !name || !rating || !text) {
+      return res.status(400).send({
+        msg: "All fields are required",
+        success: false,
+      });
+    }
+
+    const review = {
+      name,
+      rating: parseInt(rating, 10),
+      text,
+    };
+
+    const pkg = await packageModel.findByIdAndUpdate(
+      pid,
+      { $push: { reviews: review } },
+      { new: true, runValidators: true }
+    );
+
+    if (!pkg) {
+      return res.status(404).send({
+        msg: "Package not found",
+        success: false,
+      });
+    }
+
+    res.status(200).send({
+      msg: "Review added successfully",
+      success: true,
+      pkg,
+    });
+    
+  } catch (error) {
+    next(error);
+  }
+};

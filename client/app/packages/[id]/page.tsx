@@ -8,6 +8,7 @@ import BookingCard from "@/components/BookingCard";
 import { FaWhatsapp } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 
 interface Review {
@@ -42,6 +43,7 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [userReviews, setUserReviews] = useState<Review[]>([])
+  const [newReview, setNewReview] = useState({ name: "", rating : 5, text: "" })
   const [openAccordion, setOpenAccordion] = useState<string | null>("highlights")
 
   const getPackage = async () => {
@@ -64,6 +66,21 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
   useEffect(() => {
      getPackage();
   }, [pid])
+
+
+  const handleSubmitReview = async(e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/${pid}/createReview`, newReview);
+      if(res.data.success){
+        toast.success("Review submitted successfully!");
+        setNewReview({ name: "", rating: 5, text: "" });
+      }
+    } catch (error) {
+      toast.error("Failed to submit review. Please try again later.");
+    }
+
+  }
 
 
 const toggleAccordion = (section: string) => {
@@ -251,7 +268,7 @@ return (
                 <p className="text-gray-600">Based on {userReviews.length} reviews</p>
               </div>
 
-              <div className="space-y-4 mb-8">
+              {/* <div className="space-y-4 mb-8">
                 {[
                   { label: "Guide", rating: 4.6 },
                   { label: "Transportation", rating: 4.7 },
@@ -262,7 +279,7 @@ return (
                     <span className="text-gray-900 font-black">{item.rating.toFixed(1)}</span>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div>
                 {userReviews.length != 0 && <h3 className="font-bold text-xl mb-3">Highlighted Reviews</h3>}
@@ -292,6 +309,46 @@ return (
                 </div>
 
               </div>
+              <form onSubmit={handleSubmitReview} className="space-y-6 mt-6">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all outline-none"
+                    value={newReview.name}
+                    onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
+                    required
+                  />
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-3">Your Rating</label>
+                    <div className="flex space-x-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setNewReview({ ...newReview, rating: star })}
+                          className={`${star <= newReview.rating ? "text-yellow-400" : "text-gray-300"
+                            } hover:text-yellow-400 transition-colors`}
+                        >
+                          <Star size={28} fill="currentColor" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <textarea
+                    placeholder="Share your experience..."
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none outline-none"
+                    value={newReview.text}
+                    onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
+                    required
+                  ></textarea>
+
+                  <button type="submit" className="btn-primary w-full">
+                    Submit Review
+                  </button>
+                </form>
             </div>
           </div>
         </div>

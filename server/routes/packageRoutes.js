@@ -1,7 +1,13 @@
 import express from "express";
 import { Router } from "express";
-import { getPackagesController, createPackageController, deletePackageController, getPackageByIdController, updatePackageController } from "../controllers/packageControllers.js";
-
+import {
+  getPackagesController,
+  createPackageController,
+  deletePackageController,
+  getPackageByIdController,
+  updatePackageController,
+  createReviewController,
+} from "../controllers/packageControllers.js";
 
 const router = Router();
 
@@ -15,6 +21,6 @@ router.get("/getPackage/:pid", getPackageByIdController);
 
 router.put("/updatePackage/:pid", updatePackageController);
 
-
+router.post("/:pid/createReview", createReviewController);
 
 export default router;
