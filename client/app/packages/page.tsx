@@ -22,6 +22,14 @@ export default function Packages() {
     description: string;
   }
 
+  interface Review {
+  _id: string
+  name: string
+  rating: number
+  text: string
+}
+
+
   const [packages, setPackages] = useState<Package[]>([]);
 
   const getPackages = async (): Promise<void> => {
@@ -44,6 +52,7 @@ export default function Packages() {
   const [durationFilter, setDurationFilter] = useState("")
   const [typeFilters, setTypeFilters] = useState("")
   const [priceFilter, setPriceFilter] = useState("")
+  
 
   const filteredPackages = packages.filter((pkg) => {
     const matchesSearch = pkg.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -68,6 +77,13 @@ export default function Packages() {
     setTypeFilters("");
   };
 
+
+  // Calculate average rating for each package
+  const calculateAvgRating = (reviews: Review[]): number => {
+    if (reviews.length === 0) return 1;
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+    return Number((totalRating / reviews.length).toFixed(1));
+  }
 
   return (
     <div className="pt-20">
@@ -166,7 +182,7 @@ export default function Packages() {
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
                     <div className="flex items-center">
                       <Star className="text-yellow-500 fill-current" size={16} />
-                      <span className="ml-1 text-sm font-semibold">{pkg.rating}</span>
+                      <span className="ml-1 text-sm font-semibold">{calculateAvgRating(pkg.reviews)}</span>
                     </div>
                   </div>
                 </div>

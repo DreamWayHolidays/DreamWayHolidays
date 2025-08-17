@@ -268,18 +268,6 @@ return (
                 <p className="text-gray-600">Based on {userReviews.length} reviews</p>
               </div>
 
-              {/* <div className="space-y-4 mb-8">
-                {[
-                  { label: "Guide", rating: 4.6 },
-                  { label: "Transportation", rating: 4.7 },
-                  { label: "Value for Money", rating: 4.4 },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-gray-700 font-semibold">{item.label}</span>
-                    <span className="text-gray-900 font-black">{item.rating.toFixed(1)}</span>
-                  </div>
-                ))}
-              </div> */}
 
               <div>
                 {userReviews.length != 0 && <h3 className="font-bold text-xl mb-3">Highlighted Reviews</h3>}
@@ -339,11 +327,13 @@ return (
                   <textarea
                     placeholder="Share your experience..."
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none outline-none"
+                    className="w-full px-4 pt-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none outline-none"
                     value={newReview.text}
                     onChange={(e) => setNewReview({ ...newReview, text: e.target.value })}
                     required
+                    maxLength={100}
                   ></textarea>
+                  <p className="text-sm text-gray-600"><i>Write your review in max 100 characters</i></p>
 
                   <button type="submit" className="btn-primary w-full">
                     Submit Review
