@@ -89,6 +89,10 @@ const toggleAccordion = (section: string) => {
 
 const normalize = (val: any) => (Array.isArray(val) ? val : val ? [val] : []);
 
+   const defaultMsg = `Hey, I am interested in the "${pkg?.title}" package and I want to book it. Can I get more details?`;
+   const encodedMsg = encodeURIComponent(defaultMsg);
+   const phone = "917310735619";
+
 
 if (loading)
   return (
@@ -113,7 +117,7 @@ return (
     <div className="w-full bg-gray-100 px-3 py-2 block md:hidden fixed bottom-0">
       <div className="flex justify-center items-center my-2 mx-auto w-[90%] rounded-full bg-emerald-600 px-2 py-3">
         <FaWhatsapp className="w-5 h-5 font-bold text-xl mr-1 text-gray-100" />
-        <button className="font-medium text-md text-gray-100">Book Now</button>
+        <Link href={`https://wa.me/${phone}?text=${encodedMsg}`} target="_blank" className="font-medium text-md text-gray-100">Book Now</Link>
       </div>
     </div>
 
@@ -251,7 +255,7 @@ return (
           </div>
 
           <div className="space-y-8">
-            <BookingCard />
+            <BookingCard pkgName={pkg?.title}/>
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h2 className="text-2xl font-bold mb-6 text-gray-900">Customer Reviews</h2>
               <div className="text-center mb-8">
