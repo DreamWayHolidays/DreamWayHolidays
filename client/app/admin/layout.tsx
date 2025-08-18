@@ -1,9 +1,11 @@
 "use client";
 
-import { Package, Mail} from "lucide-react"
+import { Package, Mail, LogOut} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import ProtectedRoute from "@/components/ProtectedRoute"
+import { useAuth } from "@/contexts/authContext";
+import { useRouter } from "next/navigation";
 
 const sidebarItems = [
   { href: "/admin", icon: Package, label: "Packages" },
@@ -12,6 +14,18 @@ const sidebarItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const {userInfo, setUserInfo} = useAuth();
+  const router = useRouter();
+
+  const handleLogOut = () => {
+     setUserInfo({
+       user : null,
+       token : null
+     })
+
+     localStorage.removeItem("trek365");
+     router.push("/login");
+  }
 
   return (
     <ProtectedRoute>
@@ -37,6 +51,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </Link>
               )
             })}
+            <div className="w-full flex gap-1 mx-auto mt-4 px-4 py-3 items-center cursor-pointer">
+              <LogOut className="mr-3" size={18} />
+              <button className="text-red-500 text-md text-center cursor-pointer" onClick={handleLogOut}>Log out</button>
+            </div>
           </nav>
         </aside>
 

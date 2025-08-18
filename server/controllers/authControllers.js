@@ -13,16 +13,16 @@ export const loginController = async(req, res, next) =>{
             })
         }
         
-        const user = await userModel.findOne({email});
+        const USER = await userModel.findOne({email});
 
-        if(!user){
+        if(!USER){
             return res.status(400).send({
                 msg : "User does not exist",
                 success : false
             })
         }
 
-        const isMatch = await comparePassword(password, user.password);
+        const isMatch = await comparePassword(password, USER.password);
 
         if(!isMatch){
             return res.status(400).send({
@@ -32,9 +32,11 @@ export const loginController = async(req, res, next) =>{
         }
 
         
-        const token = jwt.sign({ _id: user._id },  process.env.JWT_SECRET,  { expiresIn: "7d" } );
+        const token = jwt.sign({ _id:   USER._id },  process.env.JWT_SECRET,  { expiresIn: "7d" } );
 
-        delete user.password;
+
+        let user = USER.toObject();
+        delete user.password; // Remove password from user object
 
         return res.status(200).send({
             success : true,

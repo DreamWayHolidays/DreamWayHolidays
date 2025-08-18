@@ -18,6 +18,7 @@ export default function LoginPage() {
     try{
      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/login`, {email, password});
      if(res.data.success){
+        console.log("Login successful:", res.data);
        toast.success("Login successful");
         setUserInfo({
           ...userInfo,
