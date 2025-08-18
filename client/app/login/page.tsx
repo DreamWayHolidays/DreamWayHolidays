@@ -3,22 +3,32 @@
 import { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
 import { FiMail, FiLock } from "react-icons/fi";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/authContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const { userInfo, setUserInfo } = useAuth();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async(e: FormEvent) => {
     e.preventDefault();
     try{
-
-
+     const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/login`, {email, password});
+     if(res.data.success){
+       toast.success("Login successful");
+        setUserInfo({
+          ...userInfo,
+          user: res.data.user,
+          token: res.data.token
+        });
+        localStorage.setItem("trek365", JSON.stringify(res.data));
+        router.push("/admin");
+     }
     }catch(error){
-       if (error instanceof Error) {
-         toast.error(error.message);
-        } else {
-         toast.error("An unknown error occurred");
-       }
+      toast.error("Please enter the correct email and password.");
     }
   };
 

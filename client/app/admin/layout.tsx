@@ -3,6 +3,7 @@
 import { Package, Mail} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import ProtectedRoute from "@/components/ProtectedRoute"
 
 const sidebarItems = [
   { href: "/admin", icon: Package, label: "Packages" },
@@ -13,6 +14,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname()
 
   return (
+    <ProtectedRoute>
     <div className="min-h-screen flex flex-col my-4 pt-20">
       <div className="flex flex-1">
         <aside className="w-64 bg-white border-r border-gray-200 p-4 shadow-lg">
@@ -41,5 +43,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="flex-1 p-6 bg-gray-50">{children}</div>
       </div>
     </div>
+    </ProtectedRoute>
   )
 }

@@ -5,6 +5,7 @@ import "./globals.css"
 import Footer from "@/components/Footer"
 import HeaderController from "@/components/HeaderController"
 import {Toaster} from "react-hot-toast";
+import { AuthProvider } from "@/contexts/authContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,10 +21,12 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
+        <AuthProvider>
         <HeaderController/>
         <Toaster position="top-center"/>
         <main className="min-h-screen">{children}</main>
         <Footer />
+        </AuthProvider>
       </body>
     </html>
   )
