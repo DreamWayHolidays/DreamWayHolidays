@@ -25,6 +25,7 @@ export default function Header({ isHomePage }: HeaderProps) {
     { href: "/packages", label: "Packages" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
+    { href: "/admin", label: "Admin" },
   ]
 
   return (

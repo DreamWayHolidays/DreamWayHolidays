@@ -14,7 +14,7 @@ const sidebarItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const {userInfo, setUserInfo} = useAuth();
+  const {setUserInfo} = useAuth();
   const router = useRouter();
 
   const handleLogOut = () => {
