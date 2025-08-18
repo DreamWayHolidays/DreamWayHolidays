@@ -8,18 +8,20 @@ import {
   updatePackageController,
   createReviewController,
 } from "../controllers/packageControllers.js";
+import { requireSignin } from "../middlewares/requireSignIn.js";
+import { isAdmin } from "../middlewares/isAdmin.js";
 
 const router = Router();
 
 router.get("/getPackages", getPackagesController);
 
-router.post("/createPackage", createPackageController);
+router.post("/createPackage", requireSignin, isAdmin, createPackageController);
 
-router.delete("/deletePackage/:id", deletePackageController);
+router.delete("/deletePackage/:id",requireSignin, isAdmin,deletePackageController);
 
 router.get("/getPackage/:pid", getPackageByIdController);
 
-router.put("/updatePackage/:pid", updatePackageController);
+router.put("/updatePackage/:pid", requireSignin, isAdmin, updatePackageController);
 
 router.post("/:pid/createReview", createReviewController);
 
