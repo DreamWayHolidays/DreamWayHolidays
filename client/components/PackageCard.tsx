@@ -21,8 +21,8 @@ interface PackageCardProps {
 
 const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
   return (
-    <div className="flex bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative w-48 h-48 flex-shrink-0">
+    <div className="flex flex-col md:flex-row bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow mb-2">
+      <div className="relative w-full h-40 md:w-48 md:h-48 flex-shrink-0">
         <Image
           src={pkg.images[0] || "/placeholder.svg"}
           alt={pkg.title}
