@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 interface HeaderProps {
   isHomePage: boolean;
@@ -33,9 +34,12 @@ export default function Header({ isHomePage }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className={`text-3xl font-black transition-colors ${isHomePage ? isScrolled ? "text-gray-900" : "text-white" : "text-gray-900"}`}>
-            Trek<span className="text-emerald-700">365</span>
+           {isHomePage ? isScrolled ? <Image src={"/web-app-manifest-192x192.png"} width={80} height={50} alt="trek365 logo" /> : 
+            <Image src={"/web-app-manifest-light-192x192.png"} width={80} height={50} alt="trek365 logo" /> :
+            <Image src={"/web-app-manifest-192x192.png"} width={80} height={50} alt="trek365 logo" />
+           }
           </Link>
-
+          
           <nav className="hidden md:flex space-x-10">
             {navLinks.map((link) => (
               <Link
