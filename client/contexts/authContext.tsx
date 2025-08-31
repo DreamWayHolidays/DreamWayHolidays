@@ -49,9 +49,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(false)
   }, [])
 
+  if (loading) {
+    return <div className="min-h-screen grid place-items-center">Loading…</div>
+   }
+
+
   return (
     <AuthContext.Provider value={{ userInfo, loading, setUserInfo }}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   )
 }

@@ -13,13 +13,13 @@ export default function AdminRoute({ children }: { children: ReactNode }) {
       if (!userInfo?.user) {
         router.replace("/login")
       } else if (userInfo.user.role !== "admin") {
-        router.replace("/admin")
+        router.replace("/")
       }
     }
   }, [loading, userInfo, router])
 
-  if (loading) {
-    return <p>Loading...</p>
+  if (loading || !userInfo?.user || userInfo.user.role !== "admin") {
+    return null
   }
 
   return <>{children}</>

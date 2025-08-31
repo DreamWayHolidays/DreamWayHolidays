@@ -13,8 +13,12 @@ const sidebarItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { setUserInfo } = useAuth();
+  const { userInfo, setUserInfo } = useAuth();
   const router = useRouter();
+  
+  // if(userInfo?.user == null){
+  //   return<p>Loading...</p>;
+  // }
 
   const handleLogOut = () => {
     setUserInfo({ user: null, token: null });
