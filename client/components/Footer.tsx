@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <Link href="/" className="text-3xl font-black text-white">
-              Trek365
+              DreamWayHolidays
             </Link>
             <p className="mt-4 text-lg text-gray-100 max-w-md leading-relaxed">
               Crafting transformative travel experiences across incredible India. Your journey to spiritual awakening
@@ -84,7 +84,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-200 mt-12 pt-8">
           <div>
-            <p className="text-gray-100 mb-4 md:mb-0 text-center">&copy; {new Date().getFullYear()} Trek365. All rights reserved.</p>
+            <p className="text-gray-100 mb-4 md:mb-0 text-center">&copy; {new Date().getFullYear()} DreamWayHolidays. All rights reserved.</p>
           </div>
         </div>
       </div>

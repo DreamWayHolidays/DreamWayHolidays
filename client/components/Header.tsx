@@ -34,9 +34,9 @@ export default function Header({ isHomePage }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/" className={`text-3xl font-black transition-colors ${isHomePage ? isScrolled ? "text-gray-900" : "text-white" : "text-gray-900"}`}>
-           {isHomePage ? isScrolled ? <Image src={"/web-app-manifest-192x192.png"} width={80} height={50} alt="trek365 logo" priority/> : 
-            <Image src={"/web-app-manifest-light-192x192.png"} width={80} height={50} alt="trek365 logo" /> :
-            <Image src={"/web-app-manifest-192x192.png"} width={80} height={50} alt="trek365 logo"/>
+           {isHomePage ? isScrolled ? <Image src={"/DreamWay_logo.png"} width={70} height={40} alt="DreamWayHolidays logo" priority/> : 
+            <Image src={"/DreamWay_logo_light.png"} width={70} height={40} alt="DreamWayHolidays logo" /> :
+            <Image src={"/DreamWay_logo.png"} width={70} height={40} alt="DreamWayHolidays logo"/>
            }
           </Link>
           

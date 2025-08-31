@@ -25,7 +25,7 @@ export default function LoginPage() {
           user: res.data.user,
           token: res.data.token
         });
-        localStorage.setItem("trek365", JSON.stringify(res.data));
+        localStorage.setItem("dreamWayHolidays", JSON.stringify(res.data));
         router.push("/admin");
      }
     }catch(error){

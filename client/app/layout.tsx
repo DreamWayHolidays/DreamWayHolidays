@@ -10,9 +10,9 @@ import { AuthProvider } from "@/contexts/authContext"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Trek365 - Spiritual & Adventure Journeys Across India",
+  title: "DreamWayHolidays - Spiritual & Adventure Journeys Across India",
   description:
-    "Discover amazing spiritual and adventure travel experiences across India with Trek365. Your journey, our care.",
+    "Discover amazing spiritual and adventure travel experiences across India with DreamWayHolidays. Your journey, our care.",
 }
 
 export default function RootLayout({children,}: {children: React.ReactNode}) {

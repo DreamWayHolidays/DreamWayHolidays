@@ -5,13 +5,13 @@ export default function About() {
     <div className="pt-20">
       <section className="relative h-96 flex items-center justify-center text-white mb-16">
         <div className="absolute inset-0 z-0">
-          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755424114/packages/mh4wcmrhr6j6spblaj1i.jpg" alt="About Trek365" fill className="object-cover" />
+          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755424114/packages/mh4wcmrhr6j6spblaj1i.jpg" alt="About DreamWayHolidays" fill className="object-cover" />
           <div className="hero-overlay"></div>
         </div>
         <div className="relative z-10 text-center">
           <h1 className="text-5xl md:text-7xl font-black mb-4">
             About
-            <span className="text-emerald-400"> Trek365</span>
+            <span className="text-emerald-400 text-4xl md:text-7xl"> DreamWayHolidays</span>
           </h1>
           <p className="text-xl font-light">Crafting transformative journeys across incredible India</p>
         </div>
@@ -21,9 +21,9 @@ export default function About() {
         <section className="bg-emerald-800 text-white rounded-3xl p-12 lg:p-16 mb-16 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-black mb-8">What is Trek365?</h2>
+              <h2 className="text-4xl lg:text-5xl font-black mb-8">What is <span className="text-3xl lg:text-5xl">DreamWayHolidays ?</span></h2>
               <p className="text-xl leading-relaxed mb-6">
-                Trek365 is India's premier travel experience platform, specializing in spiritual and adventure
+                DreamWayHoliday is India's premier travel experience platform, specializing in spiritual and adventure
                 journeys that connect you with the soul of incredible India.
               </p>
               <p className="text-lg leading-relaxed opacity-90">

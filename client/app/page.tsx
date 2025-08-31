@@ -9,7 +9,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overlay">
           <Image
             src={"/Trek365_HomePage.jpg"}
-            alt="Trek365 Homepage Image"
+            alt="DreamWayHolidays Homepage Image"
             fill
             className="object-cover scale-110 transition-transform duration-[10s] hover:scale-100"
             priority
@@ -91,7 +91,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20 slide-up">
             <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900">
-              Why Choose <span className="text-emerald-600">Trek365</span>?
+              Why Choose <span className="text-emerald-600 text-4xl md:text-6xl">DreamWayHolidays</span>
+              <span className="text-4xl md:text-6xl text-black">?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We don't just plan trips, we craft transformative experiences

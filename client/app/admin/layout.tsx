@@ -18,7 +18,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleLogOut = () => {
     setUserInfo({ user: null, token: null });
-    localStorage.removeItem("trek365");
+    localStorage.removeItem("dreamWayHolidays");
     router.push("/login");
   };
 

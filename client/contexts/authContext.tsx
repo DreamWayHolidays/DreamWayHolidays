@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   axios.defaults.headers.common["Authorization"] = userInfo?.token ?? ""
 
   useEffect(() => {
-    const data = localStorage.getItem("trek365")
+    const data = localStorage.getItem("dreamWayHolidays")
 
     if (data) {
       const parseData = JSON.parse(data) as UserInfo
