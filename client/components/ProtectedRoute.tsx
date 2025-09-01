@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { ReactNode, useEffect } from "react"
 import { useAuth } from "@/contexts/authContext"
+import { ClipLoader } from "react-spinners"
 
 export default function AdminRoute({ children }: { children: ReactNode }) {
   const { userInfo, loading } = useAuth()
@@ -19,7 +20,9 @@ export default function AdminRoute({ children }: { children: ReactNode }) {
   }, [loading, userInfo, router])
 
   if (loading || !userInfo?.user || userInfo.user.role !== "admin") {
-    return null
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+    </div>
   }
 
   return <>{children}</>

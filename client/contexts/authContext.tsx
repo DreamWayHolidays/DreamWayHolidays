@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     token: null,
   })
 
-  axios.defaults.headers.common["Authorization"] = userInfo?.token ?? ""
 
   useEffect(() => {
     const data = localStorage.getItem("dreamWayHolidays")
@@ -48,6 +47,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     setLoading(false)
   }, [])
+
+  axios.defaults.headers.common["Authorization"] = userInfo?.token ? `Bearer ${userInfo.token}` : ""
+
 
   if (loading) {
     return <div className="min-h-screen grid place-items-center">Loading…</div>

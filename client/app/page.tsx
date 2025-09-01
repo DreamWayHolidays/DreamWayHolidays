@@ -92,7 +92,7 @@ export default function Home() {
           <div className="text-center mb-20 slide-up">
             <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900">
               Why Choose <span className="text-emerald-600 text-4xl md:text-6xl">DreamWayHolidays</span>
-              <span className="text-4xl md:text-6xl text-black">?</span>
+              <span className="text-3xl md:text-6xl text-black">?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We don't just plan trips, we craft transformative experiences
@@ -100,7 +100,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Local Expertise */}
             <div className="card text-center group">
               <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:rotate-12 transition-transform duration-300">
                 <MapPin className="text-white" size={36} />

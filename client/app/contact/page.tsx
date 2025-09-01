@@ -150,7 +150,7 @@ export default function Contact() {
                       <p className="text-gray-600">We'll respond within 24 hours</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">Team.trek365@gmail.com</p>
+                  <p className="text-lg font-semibold text-emerald-600">infodreamwayholidays@gmail.com</p>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">

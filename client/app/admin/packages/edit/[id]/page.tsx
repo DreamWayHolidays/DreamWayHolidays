@@ -7,6 +7,8 @@ import { ArrowLeft, Upload, X, Plus } from "lucide-react"
 import Link from "next/link"
 import toast from "react-hot-toast"
 import axios from "axios"
+import { ClipLoader } from "react-spinners"
+
 
 export default function EditPackage() {
     const router = useRouter()
@@ -127,9 +129,11 @@ export default function EditPackage() {
         setFormData({ ...formData, [field]: updatedArray })
     }
 
-    if (loading) {
-        return <div className="p-8 text-gray-500">Loading package...</div>
-    }
+  if(loading){
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+    </div>
+  }
 
     return (
         <div className="space-y-8">

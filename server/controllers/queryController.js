@@ -40,3 +40,34 @@ export const submitQueryController = async (req, res, next) => {
         next(error);
     }
 }
+
+
+export const deleteQueryController = async (req, res, next) => {
+    try {
+        const qid = req.params.qid;
+
+        if (!qid) {
+            return res.status(400).send({       
+                msg: "Query id is required",
+                success: false,
+            });
+        }
+
+       const query = await queryModel.findByIdAndDelete(qid);
+
+       if(!query){
+        return res.status(400).send({
+            msg : "query not found",
+            success :  false
+        })
+       }
+
+        res.status(200).send({
+            msg: "Query deleted successfully",    
+            success: true,
+        });
+
+    } catch (error) {
+        next(error);
+    }
+}

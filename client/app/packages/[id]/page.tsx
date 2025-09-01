@@ -9,6 +9,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 
 interface Review {
@@ -48,7 +49,6 @@ export default function PackageDetails({ params }: { params: Promise<{ id: strin
 
   const getPackage = async () => {
     try {
-      setLoading(true)
       setError(null)
       const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackage/${pid}`);
       
@@ -94,12 +94,11 @@ const normalize = (val: any) => (Array.isArray(val) ? val : val ? [val] : []);
    const phone = "917310735619";
 
 
-if (loading)
-  return (
-    <div className="pt-20 flex justify-center items-center h-96 text-gray-600">
-      Loading package details...
+  if(loading){
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
     </div>
-  )
+  }
 
 if (error)
   return (
@@ -114,13 +113,12 @@ const averageRating = userReviews.length > 0 ? userReviews.reduce((acc, review) 
 
 return (
   <div className="pt-20">
-    <div className="w-full bg-gray-100 px-3 py-2 block md:hidden fixed bottom-0">
+    <Link href={`https://wa.me/${phone}?text=${encodedMsg}`} target="_blank" className="w-full bg-gray-100 px-3 py-2 block md:hidden fixed bottom-0">
       <div className="flex justify-center items-center my-2 mx-auto w-[90%] rounded-full bg-emerald-600 px-2 py-3">
         <FaWhatsapp className="w-5 h-5 font-bold text-xl mr-1 text-gray-100" />
-        <Link href={`https://wa.me/${phone}?text=${encodedMsg}`} target="_blank" className="font-medium text-md text-gray-100">Book Now</Link>
+        <button className="font-medium text-md text-gray-100">Book Now</button>
       </div>
-    </div>
-
+    </Link>
 
     <section className="max-w-7xl mx-auto rounded-3xl p-6 md:p-8">
       <button onClick={() => router.back()} className="flex items-center text-emerald-600 hover:text-emerald-900 mb-4 transition-colors">

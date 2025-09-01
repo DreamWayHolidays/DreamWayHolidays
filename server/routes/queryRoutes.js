@@ -1,6 +1,8 @@
 import express from "express";
 import { Router } from "express";
-import {submitQueryController, getQueryController} from "../controllers/queryController.js";
+import {submitQueryController, getQueryController, deleteQueryController} from "../controllers/queryController.js";
+import { requireSignin } from "../middlewares/requireSignIn.js";
+import { isAdmin } from "../middlewares/isAdmin.js";
 
 const router = Router();
 
@@ -9,6 +11,8 @@ const router = Router();
 router.post("/submitQuery", submitQueryController);
 
 router.get("/getQuery", getQueryController);
+
+router.delete("/deleteQuery/:qid", requireSignin, isAdmin, deleteQueryController);
 
 
 export default router;

@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Search} from "lucide-react"
+import { Search, Trash2} from "lucide-react"
 import Link from "next/link"
 import axios from "axios"
 import toast from "react-hot-toast"
+import { ClipLoader } from "react-spinners"
 
 export default function QueriesPage() {
   
@@ -17,6 +18,7 @@ export default function QueriesPage() {
 
   const [searchTerm, setSearchTerm] = useState("")
   const [queries, setQueries] = useState<Query[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const getQueries = async () => {
     try {
@@ -26,18 +28,38 @@ export default function QueriesPage() {
       }
     } catch (error) {
       toast.error("Failed to fetch queries");
+    }finally{
+      setLoading(false);
     }
   } 
 
 
   useEffect(() => {
     getQueries();
-  })
+  },[])
 
   const filteredQueries = queries.filter((query) => {
     const matchesSearch = query.name.toLowerCase().includes(searchTerm.toLowerCase()) || query.email.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesSearch;
   })
+
+    const handleDelete = async (id: string | number) => {
+      try {
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/query/deleteQuery/${id}`);
+        if (res.data.success) {
+          getQueries();
+          toast.success("Query deleted successfully");
+        }
+      } catch (error) {
+        toast.error("Failed to delete query");
+      }
+    }
+
+  if(loading){
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+    </div>
+  }
 
 
   return (
@@ -73,7 +95,10 @@ export default function QueriesPage() {
                         <p className="text-sm text-gray-600 mb-2">{query.email}</p>
                         <p className="text-md text-sky-950 line-clamp-2">{query.message}</p>
                     </div>
-                    <Link href={`https://mail.google.com/mail/?view=cm&fs=1&to=${query?.email}`} target="_blank" className="hidden w-20 group-hover:block bg-emerald-600 px-4 py-1 rounded-lg text-white mt-3 text-sm cursor-pointer">Reply</Link>
+                    <div className="flex justify-between items-center mt-3" >
+                    <Link href={`https://mail.google.com/mail/?view=cm&fs=1&to=${query?.email}`} target="_blank" className="hidden w-20 group-hover:block bg-emerald-600 px-4 py-1 rounded-lg text-white text-sm cursor-pointer">Reply</Link>
+                    <button className="flex justify-center items-center cursor-pointer" onClick={() => handleDelete(query?._id)}><Trash2 className=" w-20 group-hover:block text-red-500"/></button>
+                    </div>
                 </div>
               ))}
             </div>

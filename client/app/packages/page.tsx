@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Search, Star } from "lucide-react"
 import axios from "axios"
 import toast from "react-hot-toast"
-
+import { ClipLoader } from "react-spinners";
 
 export default function Packages() {
 
@@ -31,6 +31,8 @@ export default function Packages() {
 
 
   const [packages, setPackages] = useState<Package[]>([]);
+  const [loading, setLoading] = useState(true);
+
 
   const getPackages = async (): Promise<void> => {
     try {
@@ -38,9 +40,11 @@ export default function Packages() {
       if (res.data.success) {
        const data: Package[] = res.data.Packages;
        setPackages(data);       
-      }
+      }      
     } catch (error) {
       toast.error("Failed to fetch packages");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -83,6 +87,12 @@ export default function Packages() {
     if (reviews.length === 0) return 1;
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
     return Number((totalRating / reviews.length).toFixed(1));
+  }
+
+  if(loading){
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+    </div>
   }
 
   return (
@@ -200,10 +210,7 @@ export default function Packages() {
 
                   <div className="flex justify-between items-center">
                     <span className="text-3xl font-black text-emerald-600">₹{pkg.price.toLocaleString()}</span>
-                    <Link
-                      href={`/packages/${pkg._id}`}
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-semibold transition-all hover:scale-105"
-                    >
+                    <Link href={`/packages/${pkg._id}`} className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-semibold transition-all hover:scale-105">
                       Explore
                     </Link>
                   </div>

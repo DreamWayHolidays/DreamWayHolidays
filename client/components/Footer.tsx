@@ -62,7 +62,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center">
                 <Mail size={18} className="mr-3 text-gray-100" />
-                <span className="font-medium">Team.trek365@gmail.com</span>
+                <p className="font-medium break-all">infodreamwayholidays@gmail.com</p>
               </div>
               <div className="flex items-center">
                 <Phone size={18} className="mr-3 text-gray-100" />
@@ -72,7 +72,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <MapPin size={18} className="mr-3 text-gray-100 w-8 md:w-10"/>
-                <p className="font-medium">277
+                <p className="font-medium break-all">277
                   Saket colony 
                   lane no 4
                   Ajabpur kalan

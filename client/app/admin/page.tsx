@@ -6,6 +6,7 @@ import { Plus, Search, Filter} from "lucide-react"
 import PackageCard from "@/components/PackageCard"
 import toast from "react-hot-toast"
 import axios from "axios"
+import { ClipLoader } from "react-spinners"
 
 
 export default function PackagesPage() {
@@ -25,6 +26,7 @@ export default function PackagesPage() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [searchTerm, setSearchTerm] = useState("")
   const [typeFilter, setTypeFilter] = useState("all")
+  const [loading, setLoading] = useState(true);
 
   const filteredPackages = packages.filter((pkg) => {
     const matchesSearch = pkg.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,6 +43,8 @@ export default function PackagesPage() {
       }
     } catch (error) {
       console.error("Failed to fetch packages:", error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -59,6 +63,12 @@ export default function PackagesPage() {
     } catch (error) {
       toast.error("Failed to delete package");
     }
+  }
+
+  if(loading){
+    return <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+    </div>
   }
 
   return (
