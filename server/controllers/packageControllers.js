@@ -1,3 +1,4 @@
+import categoryModel from "../models/categoryModel.js";
 import packageModel from "../models/packageModel.js";
 import cloudinary from "../utils/cloudinary.js";
 import formidable from "formidable";
@@ -281,3 +282,73 @@ export const createReviewController = async (req, res, next) => {
     next(error);
   }
 };
+
+export const createCategoryController = async(req, res, next) => {
+  try {
+
+    const {category} = req.body;
+    
+    if(!category){
+      return res.status(400).send({
+        msg : "category is required",
+        success : false
+      })
+    }
+
+    const ctgry = await new categoryModel({
+      name : category
+    }).save();
+
+    return res.status(200).send({
+      msg : "category successfully created",
+      success : true
+    })
+
+    
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const getCategoriesController =  async(req, res, next) => {
+  try {
+    const allCategories =  await categoryModel.find();
+    return res.status(200).send({
+      msg : "Categories fetched successfully",
+      success : true,
+      allCategories
+    })
+  } catch (error) {
+    next(error);
+  }
+}
+
+export const deleteCategoryController =  async(req, res, next) =>{
+  try {
+    const {cid} = req.params; 
+
+    if(!cid){
+      return res.status(400).send({
+        msg : "Category id is required",
+        success : false
+      })
+    }
+
+    const category = await categoryModel.findByIdAndDelete(cid);
+
+    if(!category){
+      return res.status(400).send({
+        msg : "Category not found",
+        success : false
+      })
+    }
+
+    return res.status(200).send({
+      msg : "Category deleted successfully",
+      success : true
+    })
+
+  } catch (error) {
+    next(error);
+  }
+}

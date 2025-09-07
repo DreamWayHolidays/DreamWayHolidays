@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Upload, X, Plus } from "lucide-react"
 import Link from "next/link"
@@ -11,7 +11,12 @@ import axios from "axios"
 export default function CreatePackage() {
     const router = useRouter()
     const [saveStatus, setSaveStatus] = useState("Save");
+    const [loading, setLoading] = useState(true);
    
+    interface category{
+        _id : string
+        name : string
+    }
 
     interface FormData {
         title: string;
@@ -33,7 +38,7 @@ export default function CreatePackage() {
         description: "",
         duration: "",
         price: "",
-        type: "Spiritual",
+        type: "Spritual",
         images: [],
         highlights: [],
         includes: [],
@@ -43,6 +48,24 @@ export default function CreatePackage() {
     });
 
     const [imageFiles, setImageFiles] = useState<File[]>([]);
+    const [categories, setCategories] = useState<category[]>([]);
+
+    const getCategories = async() => {
+        try {
+            const res  = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getCategories`);
+            if(res.data.success){
+                setCategories(res.data.allCategories);
+            }
+        } catch (error) {
+            toast.error("unable to fetch categories");
+        }finally{
+          setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getCategories();
+    },[])
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -244,12 +267,9 @@ export default function CreatePackage() {
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-semibold text-gray-700 mb-2">Type *</label>
+                                        <label className="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
                                         <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none" required>
-                                            <option value="Spiritual">Spiritual</option>
-                                            <option value="Adventure">Adventure</option>
-                                            <option value="Cultural">Cultural</option>
-                                            <option value="Wildlife">Wildlife</option>
+                                            {categories?.map((cat) => <option key={cat?._id} value={cat?.name}>{cat?.name}</option>)}
                                         </select>
                                     </div>
                                 </div>

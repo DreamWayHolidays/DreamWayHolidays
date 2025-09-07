@@ -48,6 +48,8 @@ export default function PackagesPage() {
     }
   };
 
+  
+
   useEffect(() => {
     getPackages();
   }, [])
@@ -78,13 +80,16 @@ export default function PackagesPage() {
           <h1 className="text-3xl font-black text-gray-900">Packages</h1>
           <p className="text-gray-600 mt-2">Manage your travel packages and itineraries</p>
         </div>
-        <Link
-          href="/admin/packages/create"
-          className="mt-4 sm:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 flex items-center"
-        >
+        <div className="flex gap-2 flex-col md:gap-4 md:flex-row">
+        <Link href="/admin/packages/create" className="mt-4 sm:mt-0 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 flex items-center" >
           <Plus className="mr-2" size={20} />
           Create Package
         </Link>
+        <Link href="/admin/packages/category" className="mt-4 sm:mt-0 bg-white border border-black/20 text-emerald-700 px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 flex items-center" >
+          <Plus className="mr-2" size={20} />
+          New Category
+        </Link>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-lg p-6">

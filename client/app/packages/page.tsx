@@ -7,8 +7,14 @@ import { Search, Star } from "lucide-react"
 import axios from "axios"
 import toast from "react-hot-toast"
 import { ClipLoader } from "react-spinners";
+import { stringify } from "querystring"
 
 export default function Packages() {
+
+  interface category {
+    _id: string
+    name: string
+  }
 
   interface Package {
     _id: string;
@@ -23,40 +29,56 @@ export default function Packages() {
   }
 
   interface Review {
-  _id: string
-  name: string
-  rating: number
-  text: string
-}
+    _id: string
+    name: string
+    rating: number
+    text: string
+  }
 
 
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState<category[]>([]);
+
 
 
   const getPackages = async (): Promise<void> => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackages`);
       if (res.data.success) {
-       const data: Package[] = res.data.Packages;
-       setPackages(data);       
-      }      
+        const data: Package[] = res.data.Packages;
+        setPackages(data);
+      }
     } catch (error) {
       toast.error("Failed to fetch packages");
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
 
+  const getCategories = async () => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getCategories`);
+      if (res.data.success) {
+        setCategories(res.data.allCategories);
+      }
+    } catch (error) {
+      toast.error("unable to fetch categories");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
     getPackages();
+    getCategories();
   }, [])
 
   const [searchTerm, setSearchTerm] = useState("")
   const [durationFilter, setDurationFilter] = useState("")
   const [typeFilters, setTypeFilters] = useState("")
   const [priceFilter, setPriceFilter] = useState("")
-  
+
 
   const filteredPackages = packages.filter((pkg) => {
     const matchesSearch = pkg.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -89,9 +111,9 @@ export default function Packages() {
     return Number((totalRating / reviews.length).toFixed(1));
   }
 
-  if(loading){
+  if (loading) {
     return <div className="flex w-full h-screen justify-center items-center">
-        <ClipLoader color="#36d7b7" size={50} />
+      <ClipLoader color="#36d7b7" size={50} />
     </div>
   }
 
@@ -149,10 +171,7 @@ export default function Packages() {
                 onChange={(e) => setTypeFilters(e.target.value)}
               >
                 <option value="">All Types</option>
-                <option value="Spiritual">Spiritual</option>
-                <option value="Adventure">Adventure</option>
-                <option value="Wildlife">Wildlife</option>
-                <option value="Cultural">Cultural</option>
+                {categories?.map((cat) => <option key={cat?._id} value={cat?.name}>{cat?.name}</option> )}
               </select>
 
 
@@ -201,7 +220,7 @@ export default function Packages() {
                   <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-emerald-600 transition-colors">
                     {pkg.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{pkg.description.slice(0,130)}...</p>
+                  <p className="text-gray-600 mb-4">{pkg.description.slice(0, 130)}...</p>
 
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-gray-500">{pkg.duration}</span>
