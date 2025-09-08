@@ -6,6 +6,12 @@ const reviewSchema = new mongoose.Schema({
   text: { type: String, required: true }
 },{timestamps: true});
 
+const itinerarySchema = new mongoose.Schema({
+  day : { type :  Number, unique : true, required : true},
+  title : {type : String, required : true},
+  description : {type : String, required : true}
+})
+
 const packageSchema = new mongoose.Schema({
   title: { type: String, required: true },
   duration: { type: String, required: true },
@@ -19,6 +25,7 @@ const packageSchema = new mongoose.Schema({
   excludes: [{ type: String, required: true }],
   meetingPoint: { type: String, required: true },
   importantInfo: [{ type: String, required: true }],
+  packageItinerary : [itinerarySchema],
   reviews: [reviewSchema]
 }, { timestamps: true });
 

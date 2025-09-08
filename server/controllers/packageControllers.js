@@ -80,9 +80,10 @@ export const createPackageController = async (req, res, next) => {
       const includes = normalizeArrayField(JSON.parse(fields.includes));
       const excludes = normalizeArrayField(JSON.parse(fields.excludes));
       const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
+      const packageItinerary = JSON.parse(fields.packageItinerary);
 
 
-      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length) {
+      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length || !packageItinerary.length) {
         return res.status(400).json({ success: false, msg: "Missing required fields." });
       }
 
@@ -106,6 +107,7 @@ export const createPackageController = async (req, res, next) => {
         includes,
         excludes,
         importantInfo,
+        packageItinerary,
         images: imageUrls,
       }).save();
 
@@ -142,9 +144,10 @@ export const updatePackageController = async (req, res, next) => {
       const includes = normalizeArrayField(JSON.parse(fields.includes));
       const excludes = normalizeArrayField(JSON.parse(fields.excludes));
       const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
+      const packageItinerary = JSON.parse(fields.packageItinerary);
       const images = normalizeArrayField(JSON.parse(fields.images));
 
-      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length) {
+      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length || !packageItinerary.length) {
         return res.status(400).json({ success: false, msg: "Missing required fields." });
       }
 
@@ -161,6 +164,7 @@ export const updatePackageController = async (req, res, next) => {
         excludes,
         importantInfo,
         images,
+        packageItinerary
       }
 
      const updatedPkg = await packageModel.findByIdAndUpdate(pid, pkg, { new: true, runValidators: true } );

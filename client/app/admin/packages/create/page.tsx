@@ -7,6 +7,8 @@ import { ArrowLeft, Upload, X, Plus } from "lucide-react"
 import Link from "next/link"
 import toast from "react-hot-toast"
 import axios from "axios"
+import { ClipLoader } from "react-spinners"
+import ItineraryForm from "@/components/ItineraryForm"
 
 export default function CreatePackage() {
     const router = useRouter()
@@ -16,6 +18,12 @@ export default function CreatePackage() {
     interface category{
         _id : string
         name : string
+    }
+
+    interface ItineraryItem{
+        day : number
+        title : string
+        description : string
     }
 
     interface FormData {
@@ -49,6 +57,9 @@ export default function CreatePackage() {
 
     const [imageFiles, setImageFiles] = useState<File[]>([]);
     const [categories, setCategories] = useState<category[]>([]);
+    const [itinerary, setItinerary] = useState<ItineraryItem[]>([{
+        day : 1, title : "", description : ""
+    }]);
 
     const getCategories = async() => {
         try {
@@ -88,6 +99,7 @@ export default function CreatePackage() {
             formDataToSend.append("includes", JSON.stringify(formData.includes));
             formDataToSend.append("excludes", JSON.stringify(formData.excludes));
             formDataToSend.append("importantInfo", JSON.stringify(formData.importantInfo));
+            formDataToSend.append("packageItinerary", JSON.stringify(itinerary));
 
             imageFiles.forEach((file) => {
                 formDataToSend.append("images", file);
@@ -194,6 +206,12 @@ export default function CreatePackage() {
         setImageFiles((prev) => prev.filter((_, i) => i !== index));
     };
 
+
+    if(loading){
+      return <div className="flex w-full h-screen justify-center items-center">
+         <ClipLoader color="#36d7b7" size={50} />
+        </div>   
+    }
 
     return (
         <div className="space-y-8">
@@ -440,6 +458,8 @@ export default function CreatePackage() {
                                 </div>
                             </div>
                         </div>
+
+                        <ItineraryForm itinerary={itinerary} setItinerary={setItinerary}/>
                     </div>
 
                     <div className="space-y-8">

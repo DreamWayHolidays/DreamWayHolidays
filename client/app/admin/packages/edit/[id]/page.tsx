@@ -8,6 +8,7 @@ import Link from "next/link"
 import toast from "react-hot-toast"
 import axios from "axios"
 import { ClipLoader } from "react-spinners"
+import ItineraryForm from "@/components/ItineraryForm"
 
 
 export default function EditPackage() {
@@ -16,6 +17,21 @@ export default function EditPackage() {
     const packageId = params?.id as string;
     const [saveStatus, setSaveStatus] = useState("Update")
     const [loading, setLoading] = useState(true)
+    
+    interface category{
+        _id : string
+        name : string
+    } 
+
+
+    interface ItineraryItem{
+        day : number
+        title : string
+        description : string
+    }
+
+    const [categories, setCategories] = useState<category[]>([]);
+    const [itinerary, setItinerary] = useState<ItineraryItem[]>([]);
 
     interface FormData {
         title: string
@@ -30,6 +46,7 @@ export default function EditPackage() {
         importantInfo: string[]
         meetingPoint: string
     }
+
 
     const [formData, setFormData] = useState<FormData>({
         title: "",
@@ -47,6 +64,17 @@ export default function EditPackage() {
 
     useEffect(() => {
         if (!packageId) return
+
+        const fetchCategory = async () => {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getCategories`);
+                if(res.data.success){
+                    setCategories(res.data.allCategories);
+                }
+            } catch (error) {
+                toast.error("Unable to fetch categories");
+            }
+        }
 
         const fetchPackage = async () => {
             try {
@@ -66,6 +94,7 @@ export default function EditPackage() {
                         excludes: pkg.excludes?.length ? pkg.excludes : [""],
                         importantInfo: pkg.importantInfo?.length ? pkg.importantInfo : [""],
                     })
+                    setItinerary(pkg?.packageItinerary);
                 }
             } catch (err) {
                 toast.error("Failed to load package data")
@@ -73,7 +102,8 @@ export default function EditPackage() {
                 setLoading(false)
             }
         }
-
+        
+        fetchCategory()
         fetchPackage()
     }, [packageId])
 
@@ -94,6 +124,7 @@ export default function EditPackage() {
             formDataToSend.append("excludes", JSON.stringify(formData.excludes))
             formDataToSend.append("importantInfo", JSON.stringify(formData.importantInfo))
             formDataToSend.append("images", JSON.stringify(formData.images) )
+            formDataToSend.append("packageItinerary", JSON.stringify(itinerary));
 
 
             const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/updatePackage/${packageId}`, formDataToSend)
@@ -207,10 +238,7 @@ export default function EditPackage() {
                                     <div>
                                         <label className="block text-sm font-semibold text-gray-700 mb-2">Type *</label>
                                         <select name="type" value={formData.type} onChange={handleChange} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-none" required>
-                                            <option value="Spiritual">Spiritual</option>
-                                            <option value="Adventure">Adventure</option>
-                                            <option value="Cultural">Cultural</option>
-                                            <option value="Wildlife">Wildlife</option>
+                                            {categories?.map((cat) => <option key={cat?._id} value={cat?.name}>{cat?.name}</option>)}
                                         </select>
                                     </div>
                                 </div>
@@ -381,6 +409,8 @@ export default function EditPackage() {
                                 </div>
                             </div>
                         </div>
+
+                        <ItineraryForm itinerary={itinerary} setItinerary={setItinerary} />
                     </div>
                 <div className="bg-white rounded-2xl shadow-lg p-6">
                     <h3 className="text-lg font-bold text-gray-900 mb-4">Publish</h3>
