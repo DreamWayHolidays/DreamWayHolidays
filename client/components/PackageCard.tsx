@@ -37,7 +37,7 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
       <div className="flex flex-col justify-between flex-grow p-4">
         <div>
           <h3 className="text-lg font-bold text-gray-900">{pkg.title}</h3>
-          <p className="text-gray-600 text-sm mt-1">{pkg.description}</p>
+          <p className="text-gray-600 text-sm mt-1">{pkg.description.slice(0, 230)}...</p>
 
           <div className="flex items-center text-sm text-gray-500 mt-3">
             <span>{pkg.duration}</span>
