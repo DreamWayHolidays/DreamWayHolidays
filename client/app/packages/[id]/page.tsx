@@ -34,6 +34,11 @@ interface ItineraryItem {
   description: string;
 }
 
+interface ImageObject{
+  public_id : string
+  imageUrl : string
+}
+
 interface Package {
   _id: string;
   title: string;
@@ -42,7 +47,7 @@ interface Package {
   price: string;
   rating: number;
   reviews: Review[];
-  images: string[];
+  images: ImageObject[];
   highlights: string[];
   includes: string[];
   excludes: string[];
@@ -191,7 +196,7 @@ export default function PackageDetails({
         <div className="hidden md:grid grid-cols-4 gap-2">
           <div className="col-span-3 overflow-hidden rounded-xl">
             <Image
-              src={pkg?.images?.length > 0 ? pkg.images[0] : "/placeholder.svg"}
+              src={pkg?.images?.length > 0 ? pkg.images[0].imageUrl : "/placeholder.svg"}
               alt={`${pkg.title} image 1`}
               width={800}
               height={600}
@@ -205,7 +210,7 @@ export default function PackageDetails({
                 className="overflow-hidden rounded-xl aspect-[3/2] mb-2"
               >
                 <Image
-                  src={img ? img : "/placeholder.svg"}
+                  src={img ? img.imageUrl : "/placeholder.svg"}
                   alt={`${pkg.title} image ${idx + 3}`}
                   width={400}
                   height={300}
@@ -224,7 +229,7 @@ export default function PackageDetails({
               className="flex-shrink-0 snap-center overflow-hidden rounded-xl w-80 aspect-[5/4]"
             >
               <Image
-                src={img ? img : "/placeholder.svg"}
+                src={img ? img.imageUrl : "/placeholder.svg"}
                 alt={`${pkg.title} image ${idx + 1}`}
                 width={450}
                 height={300}

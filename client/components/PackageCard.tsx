@@ -13,6 +13,11 @@ interface Review {
   text: string;
 }
 
+interface ImageObject{
+  public_id : string
+  imageUrl : string
+}
+
 interface PackageCardProps {
   pkg: {
     _id: string;
@@ -22,7 +27,7 @@ interface PackageCardProps {
     price: number;
     type: string;
     rating: number;
-    images: string[];
+    images: ImageObject[];
     reviews: Review[];
   };
   onDelete?: (_id: string) => void;
@@ -39,7 +44,7 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
     <div className="flex flex-col md:flex-row bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow mb-2">
       <div className="relative w-full h-40 md:w-48 md:h-48 flex-shrink-0">
         <Image
-          src={pkg.images[0] || "/placeholder.svg"}
+          src={pkg.images[0].imageUrl || "/placeholder.svg"}
           alt={pkg.title}
           fill
           className="object-cover"

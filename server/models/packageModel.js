@@ -12,13 +12,18 @@ const itinerarySchema = new mongoose.Schema({
   description : {type : String, required : true}
 })
 
+const imageSchema = new mongoose.Schema({
+  public_id : { type : String, required : true},
+  imageUrl : { type : String, required : true}
+})
+
 const packageSchema = new mongoose.Schema({
   title: { type: String, required: true },
   duration: { type: String, required: true },
   price: { type: String, required: true },
   type: { type: String, required: true, },
   rating: { type: Number, required: true, min: 0, max: 5, default: 5 },
-  images: [{ type: String, required: true }],
+  images: [imageSchema],
   description: { type: String, required: true },
   highlights: [{ type: String, required: true }],
   includes: [{ type: String, required: true }],

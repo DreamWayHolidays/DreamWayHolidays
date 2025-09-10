@@ -15,6 +15,12 @@ interface Review {
   date: string;
   text: string;
 }
+
+interface ImageObject{
+  public_id : string
+  imageUrl :  string
+}
+
 interface Package {
   _id: string;
   title: string;
@@ -23,13 +29,17 @@ interface Package {
   type: string;
   rating: number;
   reviews: Review[];
-  images: string[];
+  images: ImageObject[];
   description: string;
 }
+
+
 interface category {
   _id: string;
   name: string;
 }
+
+
 export default function PackagesPage() {
   const [packages, setPackages] = useState<Package[]>([]);
   const [searchTerm, setSearchTerm] = useState("");

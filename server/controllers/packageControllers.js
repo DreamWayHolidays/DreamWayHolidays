@@ -3,29 +3,26 @@ import packageModel from "../models/packageModel.js";
 import cloudinary from "../utils/cloudinary.js";
 import formidable from "formidable";
 
-
 export const getPackagesController = async (req, res, next) => {
-    try {
-      const Packages = await packageModel.find().sort({ createdAt: -1 });
+  try {
+    const Packages = await packageModel.find().sort({ createdAt: -1 });
 
-      res.status(200).send({
-        msg : "Packages fetched successfully",
-        success : true,
-        Packages,
-      });
-        
-    } catch (error) {
-        next(error);
-    }
-}
-
+    res.status(200).send({
+      msg: "Packages fetched successfully",
+      success: true,
+      Packages,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const MAX_IMAGES = 4;
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 
 // 🔹 Utility to normalize text/array fields
-const normalizeField = (value, def = "") => Array.isArray(value) ? value[0] : value ?? def;
-
+const normalizeField = (value, def = "") =>
+  Array.isArray(value) ? value[0] : value ?? def;
 
 const normalizeArrayField = (value) => {
   if (!value) return [];
@@ -54,20 +51,19 @@ const uploadImages = async (files) => {
       throw new Error(`${file.originalFilename} exceeds 2 MB limit`);
     }
     const filepath = file.filepath || file.path;
-    const result = await cloudinary.uploader.upload(filepath, { folder: "packages" });
-    urls.push(result.secure_url);
+    const result = await cloudinary.uploader.upload(filepath, {
+      folder: "packages",
+    });
+    urls.push({ public_id: result.public_id, imageUrl: result.secure_url });
   }
   return urls;
 };
-
-
 
 export const createPackageController = async (req, res, next) => {
   const form = formidable({ multiples: true, keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
     try {
-
       if (err) return next(err);
 
       const title = normalizeField(fields.title);
@@ -79,16 +75,33 @@ export const createPackageController = async (req, res, next) => {
       const highlights = normalizeArrayField(JSON.parse(fields.highlights));
       const includes = normalizeArrayField(JSON.parse(fields.includes));
       const excludes = normalizeArrayField(JSON.parse(fields.excludes));
-      const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
+      const importantInfo = normalizeArrayField(
+        JSON.parse(fields.importantInfo)
+      );
       const packageItinerary = JSON.parse(fields.packageItinerary);
 
-
-      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length || !packageItinerary.length) {
-        return res.status(400).json({ success: false, msg: "Missing required fields." });
+      if (
+        !title ||
+        !description ||
+        !duration ||
+        !price ||
+        !meetingPoint ||
+        !highlights.length ||
+        !includes.length ||
+        !excludes.length ||
+        !importantInfo.length ||
+        !packageItinerary.length
+      ) {
+        return res
+          .status(400)
+          .json({ success: false, msg: "Missing required fields." });
       }
 
-
-      const imageFiles = files.images ? Array.isArray(files.images) ? files.images : [files.images] : [];
+      const imageFiles = files.images
+        ? Array.isArray(files.images)
+          ? files.images
+          : [files.images]
+        : [];
 
       let imageUrls = [];
 
@@ -116,22 +129,18 @@ export const createPackageController = async (req, res, next) => {
         msg: "Package created successfully",
       });
     } catch (error) {
-       next(error);
+      next(error);
     }
   });
 };
 
-
-
 export const updatePackageController = async (req, res, next) => {
+  const { pid } = req.params;
 
-  const {pid} = req.params;
-  
   const form = formidable({ multiples: true, keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
     try {
-
       if (err) return next(err);
 
       const title = normalizeField(fields.title);
@@ -145,12 +154,24 @@ export const updatePackageController = async (req, res, next) => {
       const excludes = normalizeArrayField(JSON.parse(fields.excludes));
       const importantInfo = normalizeArrayField(JSON.parse(fields.importantInfo));
       const packageItinerary = JSON.parse(fields.packageItinerary);
-      const images = normalizeArrayField(JSON.parse(fields.images));
+      const images = JSON.parse(fields.images);
 
-      if (!title || !description || !duration || !price || !meetingPoint || !highlights.length  || !includes.length || !excludes.length || !importantInfo.length || !packageItinerary.length) {
-        return res.status(400).json({ success: false, msg: "Missing required fields." });
+      if (
+        !title ||
+        !description ||
+        !duration ||
+        !price ||
+        !meetingPoint ||
+        !highlights.length ||
+        !includes.length ||
+        !excludes.length ||
+        !importantInfo.length ||
+        !packageItinerary.length
+      ) {
+        return res
+          .status(400)
+          .json({ success: false, msg: "Missing required fields." });
       }
-
 
       const pkg = {
         title,
@@ -164,13 +185,21 @@ export const updatePackageController = async (req, res, next) => {
         excludes,
         importantInfo,
         images,
-        packageItinerary
-      }
+        packageItinerary,
+      };
 
-     const updatedPkg = await packageModel.findByIdAndUpdate(pid, pkg, { new: true, runValidators: true } );
+      const updatedPkg = await packageModel.findByIdAndUpdate(pid, pkg, {
+        new: true,
+        runValidators: true,
+      });
 
-      if(!updatedPkg) {
-         return res.status(404).send({ success: false, msg: "Package not found or could not be updated." });
+      if (!updatedPkg) {
+        return res
+          .status(404)
+          .send({
+            success: false,
+            msg: "Package not found or could not be updated.",
+          });
       }
 
       return res.status(200).json({
@@ -178,72 +207,66 @@ export const updatePackageController = async (req, res, next) => {
         msg: "Package created successfully",
       });
     } catch (error) {
-       next(error);
+      next(error);
     }
   });
 };
 
-
-
 export const deletePackageController = async (req, res, next) => {
-    try {
+  try {
+    const { id } = req.params;
 
-        const { id } = req.params;
-
-        if (!id) {
-            return res.status(400).send({
-                msg: "Package ID is required",
-                success: false,
-            });
-        }
-
-        const pkg = await packageModel.findByIdAndDelete(id);
-
-        if (!pkg) {
-            return res.status(404).send({
-                msg: "Package not found",
-                success: false,
-            });
-        }
-
-        res.status(200).send({
-            msg: "Package deleted successfully",
-            success: true,
-        });
-        
-    } catch (error) {
-        next(error);
+    if (!id) {
+      return res.status(400).send({
+        msg: "Package ID is required",
+        success: false,
+      });
     }
-}
 
+    const pkg = await packageModel.findByIdAndDelete(id);
 
+    if (!pkg) {
+      return res.status(404).send({
+        msg: "Package not found",
+        success: false,
+      });
+    }
 
+    for (const image of pkg.images) {
+      await cloudinary.uploader.destroy(image.public_id);
+    }
+
+    res.status(200).send({
+      msg: "Package deleted successfully",
+      success: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getPackageByIdController = async (req, res, next) => {
-    try {
-        const { pid } = req.params;
+  try {
+    const { pid } = req.params;
 
-        if (!pid) {
-            return res.status(400).send({
-                msg: "Package ID is required",
-                success: false,
-            });
-        }
-
-        const pkg = await packageModel.find({ _id : pid });
-
-        res.status(200).send({
-            msg: "Package fetched successfully",
-            success: true,
-            pkg,
-        });
-        
-    } catch (error) {
-        next(error);
+    if (!pid) {
+      return res.status(400).send({
+        msg: "Package ID is required",
+        success: false,
+      });
     }
-}
 
+    const pkg = await packageModel.find({ _id: pid });
 
+    res.status(200).send({
+      msg: "Package fetched successfully",
+      success: true,
+      pkg,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const createReviewController = async (req, res, next) => {
   try {
@@ -281,78 +304,73 @@ export const createReviewController = async (req, res, next) => {
       success: true,
       pkg,
     });
-    
   } catch (error) {
     next(error);
   }
 };
 
-export const createCategoryController = async(req, res, next) => {
+export const createCategoryController = async (req, res, next) => {
   try {
+    const { category } = req.body;
 
-    const {category} = req.body;
-    
-    if(!category){
+    if (!category) {
       return res.status(400).send({
-        msg : "category is required",
-        success : false
-      })
+        msg: "category is required",
+        success: false,
+      });
     }
 
     const ctgry = await new categoryModel({
-      name : category
+      name: category,
     }).save();
 
     return res.status(200).send({
-      msg : "category successfully created",
-      success : true
-    })
-
-    
-  } catch (error) {
-    next(error)
-  }
-}
-
-export const getCategoriesController =  async(req, res, next) => {
-  try {
-    const allCategories =  await categoryModel.find();
-    return res.status(200).send({
-      msg : "Categories fetched successfully",
-      success : true,
-      allCategories
-    })
+      msg: "category successfully created",
+      success: true,
+    });
   } catch (error) {
     next(error);
   }
-}
+};
 
-export const deleteCategoryController =  async(req, res, next) =>{
+export const getCategoriesController = async (req, res, next) => {
   try {
-    const {cid} = req.params; 
+    const allCategories = await categoryModel.find();
+    return res.status(200).send({
+      msg: "Categories fetched successfully",
+      success: true,
+      allCategories,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-    if(!cid){
+export const deleteCategoryController = async (req, res, next) => {
+  try {
+    const { cid } = req.params;
+
+    if (!cid) {
       return res.status(400).send({
-        msg : "Category id is required",
-        success : false
-      })
+        msg: "Category id is required",
+        success: false,
+      });
     }
 
     const category = await categoryModel.findByIdAndDelete(cid);
 
-    if(!category){
+    if (!category) {
       return res.status(400).send({
-        msg : "Category not found",
-        success : false
-      })
+        msg: "Category not found",
+        success: false,
+      });
     }
 
     return res.status(200).send({
-      msg : "Category deleted successfully",
-      success : true
-    })
-
+      msg: "Category deleted successfully",
+      success: true,
+    });
   } catch (error) {
     next(error);
   }
-}
+};

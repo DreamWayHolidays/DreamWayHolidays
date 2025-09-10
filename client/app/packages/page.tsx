@@ -14,6 +14,11 @@ interface category {
   name: string;
 }
 
+interface ImageObject{
+  public_id : string
+  imageUrl : string
+}
+
 interface Package {
   _id: string;
   title: string;
@@ -22,7 +27,7 @@ interface Package {
   type: string;
   rating: number;
   reviews: [];
-  images: string[];
+  images: ImageObject[];
   description: string;
 }
 
@@ -217,7 +222,7 @@ export default function Packages() {
               <div key={pkg._id} className="package-card group">
                 <div className="relative h-64 overflow-hidden">
                   <Image
-                    src={pkg.images[0] || "/placeholder.svg"}
+                    src={pkg.images[0].imageUrl || "/placeholder.svg"}
                     alt={pkg.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
