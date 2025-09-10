@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Mail, Phone, MapPin, CheckCircle } from "lucide-react"
 import toast from "react-hot-toast"
 import axios from "axios"
+import Link from "next/link"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ export default function Contact() {
 
   const [showThankYou, setShowThankYou] = useState(false)
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/query/submitQuery`, formData)
@@ -150,7 +151,7 @@ export default function Contact() {
                       <p className="text-gray-600">We'll respond within 24 hours</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">infodreamwayholidays@gmail.com</p>
+                  <Link href={"mailto:infodreamwayholidays@gmail.com"} className="text-lg font-semibold text-emerald-600">infodreamwayholidays@gmail.com</Link>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
@@ -163,7 +164,9 @@ export default function Contact() {
                       <p className="text-gray-600">Available 24/7 for emergencies</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">7310735619, 8954253877</p>
+                  <Link href="tel:+917310735619" className="text-lg font-semibold text-emerald-600">7310735619,</Link>
+                  <Link href="tel:+918954253877" className="ms-4 text-lg font-semibold text-emerald-600">8954253877</Link>
+
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
@@ -176,14 +179,16 @@ export default function Contact() {
                       <p className="text-gray-600">Come say hello at our office</p>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-emerald-600">277,
+
+                  <Link target="_blank" href={`https://maps.google.com/?q=${encodeURIComponent("Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand")}`} className="text-lg font-semibold text-emerald-600">
+                    277,
                     Saket colony,
                     lane no 4,
                     Ajabpur kalan,
-                    Dehradun, uttrakhand</p>
+                    Dehradun, uttrakhand
+                  </Link>
                 </div>
               </div>
-
             </div>
           </div>
           <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-8 mt-10">

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { Check, X, MapPin, Star, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react"
+import { RiTimeLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import BookingCard from "@/components/BookingCard";
 import { FaWhatsapp } from "react-icons/fa";
@@ -136,8 +137,6 @@ return (
       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold">{pkg?.title}</h1>
-          <p className="text-gray-600 hidden md:block">{pkg?.description.slice(0, 290)}...</p>
-          <p className="text-gray-600 md:hidden">{pkg?.description.slice(0, 80)}...</p>
 
           <div className="flex items-center mt-2 text-gray-700">
             <Star className="text-yellow-400 fill-yellow-400 mr-1" size={18} />
@@ -197,6 +196,10 @@ return (
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
+            <div className="flex gap-1 items-center">
+              <RiTimeLine className="text-xl"/>
+               <p className="font-bold text-emerald-700 text-xl">{pkg?.duration}</p>
+            </div>
             <p>{pkg?.description}</p>
             {[
               { key: "highlights", title: "Trip Highlights", content: normalize(pkg?.highlights)},

@@ -18,24 +18,25 @@ export default function Footer() {
               and adventure begins here.
             </p>
             <div className="flex space-x-6 mt-8">
-              <a
+              <Link
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
                 <FiFacebook className="text-emerald-600" size={20} />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="https://www.instagram.com/dreamway_holidays/"
+                target="_blank"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
                 <FaInstagram className="text-emerald-600" size={20} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all"
               >
                 <CiTwitter className="text-emerald-600" size={20} />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -60,24 +61,26 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-6 text-gray-100">Contact Info</h3>
             <div className="space-y-4">
-              <div className="flex items-center">
+              <Link href={"mailto:infodreamwayholidays@gmail.com"} className="flex items-center">
                 <Mail size={18} className="mr-3 text-gray-100" />
                 <p className="font-medium break-all">infodreamwayholidays@gmail.com</p>
-              </div>
+              </Link>
               <div className="flex items-center">
                 <Phone size={18} className="mr-3 text-gray-100" />
-                <span className="font-medium">7310735619,
-                  8954253877
-                 </span>
+                <div className="font-medium">
+                  <Link href={"tel:+917310735619"}>7310735619, </Link>
+                  <Link href={"tel:+918954253877"}>8954253877</Link>
+                 </div>
               </div>
-              <div className="flex items-center">
+
+              <Link  target="_blank" href={`https://maps.google.com/?q=${encodeURIComponent("Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand")}`} className="flex items-center">
                 <MapPin size={18} className="mr-3 text-gray-100 w-8 md:w-10"/>
                 <p className="font-medium break-all">277
                   Saket colony 
                   lane no 4
                   Ajabpur kalan
                   Dehradun uttrakhand</p>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
