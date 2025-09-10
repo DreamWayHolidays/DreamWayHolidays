@@ -1,50 +1,48 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Search, Star } from "lucide-react"
-import axios from "axios"
-import toast from "react-hot-toast"
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Search, Star } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
-import { stringify } from "querystring"
+import { stringify } from "querystring";
+
+interface category {
+  _id: string;
+  name: string;
+}
+
+interface Package {
+  _id: string;
+  title: string;
+  duration: string;
+  price: number;
+  type: string;
+  rating: number;
+  reviews: [];
+  images: string[];
+  description: string;
+}
+
+interface Review {
+  _id: string;
+  name: string;
+  rating: number;
+  text: string;
+}
 
 export default function Packages() {
-
-  interface category {
-    _id: string
-    name: string
-  }
-
-  interface Package {
-    _id: string;
-    title: string;
-    duration: string;
-    price: number;
-    type: string;
-    rating: number;
-    reviews: [];
-    images: string[];
-    description: string;
-  }
-
-  interface Review {
-    _id: string
-    name: string
-    rating: number
-    text: string
-  }
-
-
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<category[]>([]);
 
-
-
   const getPackages = async (): Promise<void> => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackages`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getPackages`
+      );
       if (res.data.success) {
         const data: Package[] = res.data.Packages;
         setPackages(data);
@@ -58,7 +56,9 @@ export default function Packages() {
 
   const getCategories = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getCategories`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/packages/getCategories`
+      );
       if (res.data.success) {
         setCategories(res.data.allCategories);
       }
@@ -67,27 +67,30 @@ export default function Packages() {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     getPackages();
     getCategories();
-  }, [])
+  }, []);
 
-  const [searchTerm, setSearchTerm] = useState("")
-  const [durationFilter, setDurationFilter] = useState("")
-  const [typeFilters, setTypeFilters] = useState("")
-  const [priceFilter, setPriceFilter] = useState("")
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [durationFilter, setDurationFilter] = useState("");
+  const [typeFilters, setTypeFilters] = useState("");
+  const [priceFilter, setPriceFilter] = useState("");
 
   const filteredPackages = packages.filter((pkg) => {
-    const matchesSearch = pkg.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDuration = !durationFilter || pkg.duration.includes(durationFilter);
+    const matchesSearch = pkg.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesDuration =
+      !durationFilter || pkg.duration.includes(durationFilter);
 
     let matchesPrice = true;
     if (priceFilter) {
       if (priceFilter === "low") matchesPrice = pkg.price < 20000;
-      if (priceFilter === "mid") matchesPrice = pkg.price >= 20000 && pkg.price <= 40000;
+      if (priceFilter === "mid")
+        matchesPrice = pkg.price >= 20000 && pkg.price <= 40000;
       if (priceFilter === "high") matchesPrice = pkg.price > 40000;
     }
 
@@ -103,26 +106,32 @@ export default function Packages() {
     setTypeFilters("");
   };
 
-
   // Calculate average rating for each package
   const calculateAvgRating = (reviews: Review[]): number => {
     if (reviews.length === 0) return 1;
     const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
     return Number((totalRating / reviews.length).toFixed(1));
-  }
+  };
 
   if (loading) {
-    return <div className="flex w-full h-screen justify-center items-center">
-      <ClipLoader color="#36d7b7" size={50} />
-    </div>
+    return (
+      <div className="flex w-full h-screen justify-center items-center">
+        <ClipLoader color="#36d7b7" size={50} />
+      </div>
+    );
   }
 
   return (
     <div className="pt-20">
-
       <section className="relative h-96 flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
-          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg" alt="Travel packages" fill priority className="object-cover" />
+          <Image
+            src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg"
+            alt="Travel packages"
+            fill
+            priority
+            className="object-cover"
+          />
           <div className="hero-overlay"></div>
         </div>
         <div className="relative z-10 text-center">
@@ -131,7 +140,9 @@ export default function Packages() {
             <br />
             <span className="text-emerald-400">Adventure</span>
           </h1>
-          <p className="text-xl font-light">Handcrafted experiences across incredible India</p>
+          <p className="text-xl font-light">
+            Handcrafted experiences across incredible India
+          </p>
         </div>
       </section>
 
@@ -139,7 +150,10 @@ export default function Packages() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col mb-12 gap-6 filter-bar">
             <div className="relative">
-              <Search className="absolute left-4 top-4 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-4 text-gray-400"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search your dream destination..."
@@ -150,7 +164,6 @@ export default function Packages() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-
               <select
                 className="px-4 py-4 border-0 rounded-xl bg-gray-50 focus:outline-none"
                 value={durationFilter}
@@ -164,16 +177,18 @@ export default function Packages() {
                 <option value="10">10+ days</option>
               </select>
 
-
               <select
                 className="px-4 py-4 border-0 rounded-xl bg-gray-50 focus:outline-none"
                 value={typeFilters}
                 onChange={(e) => setTypeFilters(e.target.value)}
               >
                 <option value="">All Types</option>
-                {categories?.map((cat) => <option key={cat?._id} value={cat?.name}>{cat?.name}</option> )}
+                {categories?.map((cat) => (
+                  <option key={cat?._id} value={cat?.name}>
+                    {cat?.name}
+                  </option>
+                ))}
               </select>
-
 
               <select
                 className="px-4 py-4 rounded-xl bg-gray-50 focus:outline-none"
@@ -187,9 +202,13 @@ export default function Packages() {
               </select>
 
               <div className="flex justify-center items-center pl-4">
-                <button className="px-8 py-2 bg-emerald-600 text-white font-medium rounded-full cursor-pointer" onClick={resetFilters}>Clear</button>
+                <button
+                  className="px-8 py-2 bg-emerald-600 text-white font-medium rounded-full cursor-pointer"
+                  onClick={resetFilters}
+                >
+                  Clear
+                </button>
               </div>
-
             </div>
           </div>
 
@@ -210,8 +229,13 @@ export default function Packages() {
                   </div>
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
                     <div className="flex items-center">
-                      <Star className="text-yellow-500 fill-current" size={16} />
-                      <span className="ml-1 text-sm font-semibold">{calculateAvgRating(pkg.reviews)}</span>
+                      <Star
+                        className="text-yellow-500 fill-current"
+                        size={16}
+                      />
+                      <span className="ml-1 text-sm font-semibold">
+                        {calculateAvgRating(pkg.reviews)}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -220,16 +244,25 @@ export default function Packages() {
                   <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-emerald-600 transition-colors">
                     {pkg.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{pkg.description.slice(0, 130)}...</p>
+                  <p className="text-gray-600 mb-4">
+                    {pkg.description.slice(0, 130)}...
+                  </p>
 
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-gray-500">{pkg.duration}</span>
-                    <span className="text-sm text-gray-500">{pkg.reviews.length} reviews</span>
+                    <span className="text-sm text-gray-500">
+                      {pkg.reviews.length} reviews
+                    </span>
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <span className="text-3xl font-black text-emerald-600">₹{pkg.price.toLocaleString()}</span>
-                    <Link href={`/packages/${pkg._id}`} className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-semibold transition-all hover:scale-105">
+                    <span className="text-3xl font-black text-emerald-600">
+                      ₹{pkg.price.toLocaleString()}
+                    </span>
+                    <Link
+                      href={`/packages/${pkg._id}`}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-semibold transition-all hover:scale-105"
+                    >
                       Explore
                     </Link>
                   </div>
@@ -241,12 +274,16 @@ export default function Packages() {
           {filteredPackages.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">No packages found</h3>
-              <p className="text-gray-600">Try adjusting your filters to find more options.</p>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                No packages found
+              </h3>
+              <p className="text-gray-600">
+                Try adjusting your filters to find more options.
+              </p>
             </div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }

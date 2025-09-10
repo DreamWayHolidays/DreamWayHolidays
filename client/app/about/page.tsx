@@ -110,15 +110,15 @@ export default function About() {
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-black text-emerald-600 mb-2">10+</div>
+                  <div className="text-3xl font-black text-emerald-600 mb-2">5+</div>
                   <div className="text-sm font-semibold text-gray-600">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-black text-emerald-600 mb-2">5000+</div>
+                  <div className="text-3xl font-black text-emerald-600 mb-2">500+</div>
                   <div className="text-sm font-semibold text-gray-600">Happy Travelers</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-black text-emerald-600 mb-2">50+</div>
+                  <div className="text-3xl font-black text-emerald-600 mb-2">20+</div>
                   <div className="text-sm font-semibold text-gray-600">Destinations</div>
                 </div>
                 <div className="text-center">
