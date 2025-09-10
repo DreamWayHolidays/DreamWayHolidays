@@ -200,7 +200,7 @@ export default function PackageDetails({
           </div>
           <div className="col-span-1">
             {pkg?.images?.slice(1, 4).map((img, idx) => (
-              <div
+              <div 
                 key={idx}
                 className="overflow-hidden rounded-xl aspect-[3/2] mb-2"
               >
@@ -337,9 +337,7 @@ export default function PackageDetails({
                   </div>
                   <div className="flex justify-center items-center w-full md:w-[20%]">
                     <Link
-                      href={`https://maps.google.com/?q=${encodeURIComponent(
-                        pkg?.meetingPoint
-                      )}`}
+                      href={"https://maps.app.goo.gl/u7tCDSvyJVgDfW5t7"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-emerald-600 text-sm hover:bg-emerald-700 text-white px-4 py-2 rounded-full font-semibold transition-all hover:scale-105"

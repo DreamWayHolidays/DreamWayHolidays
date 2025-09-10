@@ -226,9 +226,8 @@ export default function Contact() {
 
                   <Link
                     target="_blank"
-                    href={`https://maps.google.com/?q=${encodeURIComponent(
-                      "Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand"
-                    )}`}
+                    rel="noopener noreferrer"
+                    href={"https://maps.app.goo.gl/u7tCDSvyJVgDfW5t7"}
                     className="text-lg font-semibold text-emerald-600"
                   >
                     277, Saket colony, lane no 4, Ajabpur kalan, Dehradun,

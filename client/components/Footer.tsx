@@ -73,7 +73,7 @@ export default function Footer() {
                  </div>
               </div>
 
-              <Link  target="_blank" href={`https://maps.google.com/?q=${encodeURIComponent("Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand")}`} className="flex items-center">
+              <Link rel="noopener noreferrer" target="_blank" href={`https://maps.app.goo.gl/u7tCDSvyJVgDfW5t7`}  className="flex items-center">
                 <MapPin size={18} className="mr-3 text-gray-100 w-8 md:w-10"/>
                 <p className="font-medium break-all">277
                   Saket colony 

@@ -87,7 +87,7 @@ export default function QueriesPage() {
           <div>
             <div className="flex flex-col gap-4">
               {filteredQueries.map((query) => (
-                <div key={query._id} className={`group bg-white rounded-2xl shadow-lg p-6 hover:scale-101 cursor-pointer transition duration-200 ease-in-out my-4}`} >
+                <div key={query._id} className={`bg-white rounded-2xl shadow-lg p-6 hover:scale-101 cursor-pointer transition duration-200 ease-in-out my-4}`} >
                    <div className="flex-1">
                      <div className="mb-2">
                        <h3 className="font-semibold text-sky-950 truncate">{query.name}</h3>
@@ -96,7 +96,7 @@ export default function QueriesPage() {
                         <p className="text-md text-sky-950 line-clamp-2">{query.message}</p>
                     </div>
                     <div className="flex justify-between items-center mt-3" >
-                    <Link href={`https://mail.google.com/mail/?view=cm&fs=1&to=${query?.email}`} target="_blank" className="hidden w-20 group-hover:block bg-emerald-600 px-4 py-1 rounded-lg text-white text-sm cursor-pointer">Reply</Link>
+                    <Link href={`https://mail.google.com/mail/?view=cm&fs=1&to=${query?.email}`} target="_blank" className="w-20  bg-emerald-600 px-4 py-1 rounded-lg text-white text-sm cursor-pointer">Reply</Link>
                     <button className="flex justify-center items-center cursor-pointer" onClick={() => handleDelete(query?._id)}><Trash2 className=" w-20 group-hover:block text-red-500"/></button>
                     </div>
                 </div>
