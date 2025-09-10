@@ -1,43 +1,52 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Mail, Phone, MapPin, CheckCircle } from "lucide-react"
-import toast from "react-hot-toast"
-import axios from "axios"
-import Link from "next/link"
+import { useState } from "react";
+import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
+import toast from "react-hot-toast";
+import axios from "axios";
+import Link from "next/link";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
+  });
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const [showThankYou, setShowThankYou] = useState(false)
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+    setLoading(true);
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/query/submitQuery`, formData)
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/query/submitQuery`,
+        formData
+      );
       if (res.data.success) {
-        setShowThankYou(true)
-        setFormData({ name: "", email: "", message: "" })
-        setTimeout(() => setShowThankYou(false), 5000)
-        return
+        setShowThankYou(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setShowThankYou(false), 5000);
+        return;
       }
     } catch (error) {
       toast.error("Failed to send message");
+    }finally{
+      setLoading(false);
     }
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <div className="pt-20">
@@ -48,8 +57,8 @@ export default function Contact() {
             <span className="text-emerald-600"> Ask here</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            We're here to help you plan your perfect journey. Get in touch with us and let's make your travel dreams
-            come true!
+            We're here to help you plan your perfect journey. Get in touch with
+            us and let's make your travel dreams come true!
           </p>
         </div>
       </section>
@@ -64,14 +73,19 @@ export default function Contact() {
                     <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle className="text-emerald-600" size={40} />
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h3>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                      Thank You!
+                    </h3>
                     <p className="text-xl text-gray-600 leading-relaxed">
-                      Your message has been sent successfully. We'll get back to you within 24 hours!
+                      Your message has been sent successfully. We'll get back to
+                      you within 24 hours!
                     </p>
                   </div>
                 ) : (
                   <>
-                    <h2 className="text-3xl font-bold mb-8 text-gray-900">Send us a message</h2>
+                    <h2 className="text-3xl font-bold mb-8 text-gray-900">
+                      Send us a message
+                    </h2>
                     <form onSubmit={handleSubmit} className="space-y-8">
                       <div className="relative">
                         <input
@@ -130,8 +144,12 @@ export default function Contact() {
                         </label>
                       </div>
 
-                      <button type="submit" className="btn-primary w-full text-xl py-5">
-                        Send Message
+                      <button
+                        type="submit"
+                        className="btn-primary w-full text-xl py-5 cursor-pointer disabled:bg-gray-500 disabled:text-white"
+                        disabled={loading}
+                      >
+                        {loading?"Wait...":"Send Message"}
                       </button>
                     </form>
                   </>
@@ -147,11 +165,20 @@ export default function Contact() {
                       <Mail className="text-emerald-600" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">Email Us</h3>
-                      <p className="text-gray-600">We'll respond within 24 hours</p>
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Email Us
+                      </h3>
+                      <p className="text-gray-600">
+                        We'll respond within 24 hours
+                      </p>
                     </div>
                   </div>
-                  <Link href={"mailto:infodreamwayholidays@gmail.com"} className="text-lg font-semibold text-emerald-600">infodreamwayholidays@gmail.com</Link>
+                  <Link
+                    href={"mailto:infodreamwayholidays@gmail.com"}
+                    className="text-lg font-semibold text-emerald-600"
+                  >
+                    infodreamwayholidays@gmail.com
+                  </Link>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
@@ -160,13 +187,26 @@ export default function Contact() {
                       <Phone className="text-emerald-600" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">Call Us</h3>
-                      <p className="text-gray-600">Available 24/7 for emergencies</p>
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Call Us
+                      </h3>
+                      <p className="text-gray-600">
+                        Available 24/7 for emergencies
+                      </p>
                     </div>
                   </div>
-                  <Link href="tel:+917310735619" className="text-lg font-semibold text-emerald-600">7310735619,</Link>
-                  <Link href="tel:+918954253877" className="ms-4 text-lg font-semibold text-emerald-600">8954253877</Link>
-
+                  <Link
+                    href="tel:+917310735619"
+                    className="text-lg font-semibold text-emerald-600"
+                  >
+                    7310735619,
+                  </Link>
+                  <Link
+                    href="tel:+918954253877"
+                    className="ms-4 text-lg font-semibold text-emerald-600"
+                  >
+                    8954253877
+                  </Link>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow">
@@ -175,33 +215,44 @@ export default function Contact() {
                       <MapPin className="text-emerald-600" size={24} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">Visit Us</h3>
-                      <p className="text-gray-600">Come say hello at our office</p>
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Visit Us
+                      </h3>
+                      <p className="text-gray-600">
+                        Come say hello at our office
+                      </p>
                     </div>
                   </div>
 
-                  <Link target="_blank" href={`https://maps.google.com/?q=${encodeURIComponent("Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand")}`} className="text-lg font-semibold text-emerald-600">
-                    277,
-                    Saket colony,
-                    lane no 4,
-                    Ajabpur kalan,
-                    Dehradun, uttrakhand
+                  <Link
+                    target="_blank"
+                    href={`https://maps.google.com/?q=${encodeURIComponent(
+                      "Saket colony lane no. 4 Ajabpur kalan Dehradun uttarakhand"
+                    )}`}
+                    className="text-lg font-semibold text-emerald-600"
+                  >
+                    277, Saket colony, lane no 4, Ajabpur kalan, Dehradun,
+                    uttrakhand
                   </Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-8 mt-10">
-            <h3 className="text-xl font-bold mb-4 text-gray-900">Quick Response Guarantee</h3>
+            <h3 className="text-xl font-bold mb-4 text-gray-900">
+              Quick Response Guarantee
+            </h3>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              Need immediate assistance? We typically respond to inquiries within 2-4 hours during business hours.
+              Need immediate assistance? We typically respond to inquiries
+              within 2-4 hours during business hours.
             </p>
             <p className="text-sm text-gray-600">
-              For urgent travel-related queries, please call us directly at our 24/7 helpline.
+              For urgent travel-related queries, please call us directly at our
+              24/7 helpline.
             </p>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

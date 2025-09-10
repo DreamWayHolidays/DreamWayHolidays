@@ -1,25 +1,40 @@
-"use client"
+"use client";
 
-import { FC } from "react"
-import Image from "next/image"
-import { Eye, Edit, Trash2, Star } from "lucide-react"
-import Link from "next/link"
+import { FC } from "react";
+import Image from "next/image";
+import { Eye, Edit, Trash2, Star } from "lucide-react";
+import Link from "next/link";
+
+interface Review {
+  _id: string;
+  name: string;
+  rating: number;
+  date: string;
+  text: string;
+}
 
 interface PackageCardProps {
   pkg: {
-    _id: string 
-    title: string
-    description: string
-    duration: string
-    price: number
-    type: string
-    rating: number
-    images: string[]
-  }
-  onDelete?: (_id: string) => void
+    _id: string;
+    title: string;
+    description: string;
+    duration: string;
+    price: number;
+    type: string;
+    rating: number;
+    images: string[];
+    reviews: Review[];
+  };
+  onDelete?: (_id: string) => void;
 }
 
 const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
+
+    const calculateAvgRating = (reviews: Review[]): number => {
+    if (reviews.length === 0) return 1;
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+    return Number((totalRating / reviews.length).toFixed(1));
+  };
   return (
     <div className="flex flex-col md:flex-row bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow mb-2">
       <div className="relative w-full h-40 md:w-48 md:h-48 flex-shrink-0">
@@ -37,14 +52,16 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
       <div className="flex flex-col justify-between flex-grow p-4">
         <div>
           <h3 className="text-lg font-bold text-gray-900">{pkg.title}</h3>
-          <p className="text-gray-600 text-sm mt-1">{pkg.description.slice(0, 230)}...</p>
+          <p className="text-gray-600 text-sm mt-1">
+            {pkg.description.slice(0, 230)}...
+          </p>
 
           <div className="flex items-center text-sm text-gray-500 mt-3">
             <span>{pkg.duration}</span>
             <span className="mx-2">•</span>
             <div className="flex items-center">
               <Star className="text-yellow-500 fill-current" size={14} />
-              <span className="ml-1 font-semibold">{pkg.rating}</span>
+              <span className="ml-1 font-semibold">{calculateAvgRating(pkg.reviews)}</span>
             </div>
           </div>
         </div>
@@ -71,7 +88,7 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
             </Link>
             <button
               onClick={() => onDelete?.(pkg._id)}
-              className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition"
+              className="p-2 rounded-lg bg-red-100 hover:bg-red-200 transition cursor-pointer"
               title="Delete Package"
             >
               <Trash2 className="text-red-600" size={18} />
@@ -80,7 +97,7 @@ const PackageCard: FC<PackageCardProps> = ({ pkg, onDelete }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PackageCard
+export default PackageCard;

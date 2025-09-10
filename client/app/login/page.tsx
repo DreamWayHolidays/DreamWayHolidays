@@ -10,11 +10,13 @@ import { useAuth } from "@/contexts/authContext";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading,setLoading]=useState<boolean>(false);
   const router = useRouter();
   const { userInfo, setUserInfo } = useAuth();
 
   const handleSubmit = async(e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try{
      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/login`, {email, password});
      if(res.data.success){
@@ -30,6 +32,8 @@ export default function LoginPage() {
      }
     }catch(error){
       toast.error("Please enter the correct email and password.");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -79,9 +83,12 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-emerald-700 text-white py-2 rounded-lg hover:bg-emerald-800 transition"
+            disabled={loading}
+            className="w-full bg-emerald-700 text-white py-2  cursor-pointer
+            rounded-lg hover:bg-emerald-800 transition disabled:bg-gray-500 disabled:text-white
+            disabled:cursor-not-allowed"
           >
-            Login
+            {loading?"Wait...":"Login"}
           </button>
         </form>
       </div>
