@@ -131,7 +131,7 @@ export default function Packages() {
       <section className="relative h-96 flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg"
+            src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518694/kedarkantha3_bqofn0_mh5qw0.jpg"
             alt="Travel packages"
             fill
             priority

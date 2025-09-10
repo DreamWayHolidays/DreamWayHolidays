@@ -57,19 +57,19 @@ export default function Home() {
               {
                 title: "Char Dham Yatra",
                 image:
-                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1757440308/packages/ofbqygqma9d3iwl8jhro.jpg",
+                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518689/ofbqygqma9d3iwl8jhro_v0b4xb.jpg",
                 type: "Spiritual",
               },
               {
                 title: "Himalayan Adventures",
                 image:
-                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1755354229/kedarkantha3_bqofn0.jpg",
+                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518694/kedarkantha3_bqofn0_mh5qw0.jpg",
                 type: "Winter",
               },
               {
                 title: "Chandrashila Trek",
                 image:
-                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1757435200/packages/pslser1t32p7sjmlphjf.jpg",
+                  "https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518657/pslser1t32p7sjmlphjf_u9zi1x.jpg",
                 type: "Winter",
               },
             ].map((destination, index) => (

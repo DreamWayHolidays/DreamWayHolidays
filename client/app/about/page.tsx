@@ -5,7 +5,7 @@ export default function About() {
     <div className="pt-20">
       <section className="relative h-96 flex items-center justify-center text-white mb-16">
         <div className="absolute inset-0 z-0">
-          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755424114/packages/mh4wcmrhr6j6spblaj1i.jpg" alt="About DreamWayHolidays" fill className="object-cover" />
+          <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518633/mh4wcmrhr6j6spblaj1i_ok2wja.jpg" alt="About DreamWayHolidays" fill className="object-cover" />
           <div className="hero-overlay"></div>
         </div>
         <div className="relative z-10 text-center">
@@ -33,7 +33,7 @@ export default function About() {
             </div>
             <div className="relative">
               <div className="relative h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757440309/packages/n3uios9arikjogsfuqs0.jpg" alt="Spiritual journey" fill className="object-cover" />
+                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518644/n3uios9arikjogsfuqs0_it00jt.jpg" alt="Spiritual journey" fill className="object-cover" />
               </div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-full opacity-20"></div>
             </div>
@@ -44,7 +44,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative lg:order-1">
               <div className="relative h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755420529/packages/avkwjbbyabxkynmqghvm.jpg" alt="Adventure trekking" fill className="object-cover" />
+                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518620/avkwjbbyabxkynmqghvm_cjwuto.jpg" alt="Adventure trekking" fill className="object-cover" />
               </div>
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-400 rounded-full opacity-20"></div>
             </div>
@@ -78,7 +78,7 @@ export default function About() {
             <div className="relative">
               <div className="relative h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
                 <Image
-                  src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1755425466/happy-travelers-indian-guide_j8hdth.png"
+                  src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518682/happy-travelers-indian-guide_j8hdth_kms0hr.png"
                   alt="Travelers with local guide"
                   fill
                   className="object-cover"
@@ -93,7 +93,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative lg:order-1">
               <div className="relative h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757437734/packages/k4dkwobfnpkxxikrwct4.jpg" alt="Beautiful Mountains" fill className="object-cover" />
+                <Image src="https://res.cloudinary.com/dvkmzugpb/image/upload/v1757518622/k4dkwobfnpkxxikrwct4_m1zibh.jpg" alt="Beautiful Mountains" fill className="object-cover" />
               </div>
               <div className="absolute -top-8 -left-8 w-32 h-32 bg-emerald-400 rounded-full opacity-15"></div>
             </div>
