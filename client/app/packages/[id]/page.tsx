@@ -24,7 +24,7 @@ interface Review {
   _id: string;
   name: string;
   rating: number;
-  date: string;
+  createdAt: string;
   text: string;
 }
 
@@ -34,9 +34,9 @@ interface ItineraryItem {
   description: string;
 }
 
-interface ImageObject{
-  public_id : string
-  imageUrl : string
+interface ImageObject {
+  public_id: string
+  imageUrl: string
 }
 
 interface Package {
@@ -83,7 +83,8 @@ export default function PackageDetails({
 
       if (res.data.success) {
         setPkg(res.data.pkg[0]);
-        setUserReviews(res.data.pkg[0].reviews || []);
+        const rvs: Review[] = res.data.pkg[0].reviews.sort((a : Review, b : Review) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setUserReviews(rvs || []);
       }
     } catch (error) {
       setError("Package not found");
@@ -106,7 +107,8 @@ export default function PackageDetails({
       );
       if (res.data.success) {
         toast.success("Review submitted successfully!");
-        setUserReviews(res.data.pkg.reviews);
+        const rvs: Review[] = res.data.pkg.reviews.sort((a : Review, b : Review) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setUserReviews(rvs);
         setNewReview({ name: "", rating: 5, text: "" });
       }
     } catch (error) {
@@ -146,7 +148,7 @@ export default function PackageDetails({
   const averageRating =
     userReviews.length > 0
       ? userReviews.reduce((acc, review) => acc + review.rating, 0) /
-        userReviews.length
+      userReviews.length
       : 1;
 
   return (
@@ -205,7 +207,7 @@ export default function PackageDetails({
           </div>
           <div className="col-span-1">
             {pkg?.images?.slice(1, 4).map((img, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="overflow-hidden rounded-xl aspect-[3/2] mb-2"
               >
@@ -292,9 +294,8 @@ export default function PackageDetails({
                   </button>
 
                   <div
-                    className={`accordion-content ${
-                      openAccordion === section.key ? "open" : ""
-                    }`}
+                    className={`accordion-content ${openAccordion === section.key ? "open" : ""
+                      }`}
                   >
                     <div className="px-8 pb-6">
                       <ul className="space-y-3">
@@ -386,11 +387,10 @@ export default function PackageDetails({
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        className={`${
-                          star <= averageRating
+                        className={`${star <= averageRating
                             ? "text-yellow-400 fill-current"
                             : "text-gray-300"
-                        }`}
+                          }`}
                         size={28}
                       />
                     ))}
@@ -413,11 +413,8 @@ export default function PackageDetails({
                         No reviews yet.
                       </p>
                     )}
-                    {userReviews.slice(0, 3).map((review) => (
-                      <div
-                        key={review._id}
-                        className="border-b border-gray-200 pb-4 mt-6"
-                      >
+                    {userReviews?.map((review) => (
+                      <div key={review._id} className="border-b border-gray-200 pb-4 mt-6" >
                         <div className="flex gap-1 items-center mb-1">
                           <div className="bg-gray-600 flex justify-center items-center w-8 h-8 rounded-full">
                             <p className="text-sm font-bold text-white text-center">
@@ -432,11 +429,10 @@ export default function PackageDetails({
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star
                               key={star}
-                              className={`cursor-pointer ${
-                                star <= review.rating
+                              className={`cursor-pointer ${star <= review.rating
                                   ? "text-yellow-400 fill-current"
                                   : "text-gray-300"
-                              }`}
+                                }`}
                               size={16}
                             />
                           ))}
@@ -472,11 +468,10 @@ export default function PackageDetails({
                           onClick={() =>
                             setNewReview({ ...newReview, rating: star })
                           }
-                          className={`cursor-pointer ${
-                            star <= newReview.rating
+                          className={`cursor-pointer ${star <= newReview.rating
                               ? "text-yellow-400"
                               : "text-gray-300"
-                          } hover:text-yellow-400 transition-colors`}
+                            } hover:text-yellow-400 transition-colors`}
                         >
                           <Star size={28} fill="currentColor" />
                         </button>
