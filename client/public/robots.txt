@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dreamwayholidays.com
+
+# Sitemaps
+Sitemap: https://dreamwayholidays.com/sitemap.xml

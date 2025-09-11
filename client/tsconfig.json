@@ -34,7 +34,7 @@
     "client/.next/types/**/*.ts",
     "client/next-env.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "next-sitemap.config.js"  ],
   "exclude": [
     "node_modules"
   ]
